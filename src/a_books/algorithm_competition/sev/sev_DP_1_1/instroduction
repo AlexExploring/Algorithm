@@ -1,0 +1,67 @@
+硬币问题，基础DP
+
+
+1.不限硬币数量
+定义状态：
+Min[i]表示金额i需要的最少硬币数量
+
+状态转移方程：
+public static void solve(){
+        Arrays.fill(Min,Integer.MAX_VALUE);
+        Min[0]=0;
+        for (int i = 0; i < value; i++) {
+            for (int j = type[i]; j < money; j++) {
+                Min[j] = Math.min(Min[j], Min[j-type[i]]+1);
+            }
+        }
+    }
+
+2.打印最少硬币的组合
+public static void solve(){
+        Arrays.fill(Min,Integer.MAX_VALUE);
+        Min[0]=0;
+        for (int i = 0; i < value; i++) {
+            for (int j = type[i]; j < money; j++) {
+                if (Min[j]>Min[j-type[i]]+1){
+                    Min_path[j] = type[i];
+                    Min[j] = Min[j-type[i]]+1;
+                }
+            }
+        }
+    }
+
+public static void print_ans(int s){
+        while (s>0){
+            System.out.println(Min_path[s]+" ");
+            s -= Min_path[s];
+        }
+    }
+
+3.所有的硬币组合   不考虑硬币数量的限制
+    定义状态
+    dp[i]表示金额i的方案总数
+    状态方程 dp[j] = dp[j]+dp[j-type[i]];
+    public static void solve(){
+            dp[0]=1;
+            for (int i = 0; i < 5; i++) {
+                for (int j = type[i]; j < money; j++) {
+                    dp[j] = dp[j]+dp[j-type[i]];
+                }
+            }
+        }
+
+4.所有硬币组合
+    定义状态：
+    dp[i][j]表示j个硬币实现金额i的方案数量
+
+     public static void solve(){
+            dp[0][0]=1;
+            for (int i = 0; i < type.length; i++) {// 硬币的面值数
+                for (int j = 1; j < COIN; j++) {  //硬币数量
+                    for (int k = type[i]; k < money; k++) {
+                        dp[k][j] += dp[k-type[i]][j-1];
+                        System.out.println(dp[k][j]);
+                    }
+                }
+            }
+        }
