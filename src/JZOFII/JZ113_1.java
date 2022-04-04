@@ -21,6 +21,7 @@ public class JZ113_1 {
     int index;
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
+        //数据初始化
         edges = new ArrayList<List<Integer>>();
         for (int i = 0; i < numCourses; ++i) {
             edges.add(new ArrayList<Integer>());
@@ -28,9 +29,13 @@ public class JZ113_1 {
         indeg = new int[numCourses];
         result = new int[numCourses];
         index = 0;
-        for (int[] info : prerequisites) {
-            edges.get(info[1]).add(info[0]);
-            ++indeg[info[0]];
+        //已知：0 <= 已知课程编号 < numCourses;
+        //如果prerequisites = [[1,0],[2,0],[3,1],[3,2]],numCourses = 4,那么edges中存储的将是
+        //[[1,2],[3],[3]];  由 0 -> 1,0 -> 2,1 -> 3,2 -> 3;
+        for (int[] prerequisite : prerequisites) {
+            edges.get(prerequisite[1]).add(prerequisite[0]);
+            //累加每个节点的入度
+            ++indeg[prerequisite[0]];
         }
 
         Queue<Integer> queue = new LinkedList<Integer>();
@@ -41,11 +46,13 @@ public class JZ113_1 {
             }
         }
 
+        //从入读为0的节点开始遍历
         while (!queue.isEmpty()) {
             // 从队首取出一个节点
             int u = queue.poll();
             // 放入答案中
             result[index++] = u;
+            //处理相邻的节点
             for (int v: edges.get(u)) {
                 --indeg[v];
                 // 如果相邻节点 v 的入度为 0，就可以选 v 对应的课程了
