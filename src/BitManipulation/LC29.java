@@ -11,23 +11,24 @@ import java.util.List;
  * 整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2
  */
 public class LC29 {
+    public static void main(String[] args) {
+        System.out.println(Integer.MAX_VALUE/2);
+    }
 
     /**
      * 直接使用long存储 dividend 和 divisor的绝对值，防止溢出
      */
-    public int divide(int dividend, int divisor) {
-
-        if (dividend == Integer.MIN_VALUE) {
-            if (divisor == 1) return Integer.MIN_VALUE;
-            if (divisor == -1) return Integer.MAX_VALUE;
-        }
-        if (dividend == 0) {
+    public int divide(int a, int b) {
+        if (a == 0) {
             return 0;
         }
+        if (a == Integer.MIN_VALUE && b == -1) {
+            return Integer.MAX_VALUE;
+        }
 
-        int sign = (dividend > 0) ^ (divisor > 0) ? -1 : 1;
-        long t = Math.abs((long) dividend);
-        long d= Math.abs((long) divisor);
+        int sign = (a > 0) ^ (b > 0) ? -1 : 1;
+        long t = Math.abs((long) a);
+        long d= Math.abs((long) b);
         int result = 0;
         for (int i=31; i>=0;i--) {
             if ((t>>i)>=d) {//找出足够大的数2^n*divisor
@@ -41,48 +42,33 @@ public class LC29 {
     /**
      * 题目要求环境只能存储32位整数
      */
-    public int divide1(int dividend, int divisor) {
-        // 考虑被除数为最小值的情况
-        if (dividend == Integer.MIN_VALUE) {
-            if (divisor == 1) {
-                return Integer.MIN_VALUE;
-            }
-            if (divisor == -1) {
-                return Integer.MAX_VALUE;
-            }
-        }
-        // 考虑除数为最小值的情况
-        if (divisor == Integer.MIN_VALUE) {
-            return dividend == Integer.MIN_VALUE ? 1 : 0;
-        }
-        // 考虑被除数为 0 的情况
-        if (dividend == 0) {
+    public int divide1(int a, int b) {
+        if (a == 0) {
             return 0;
         }
-
-        //符号相异取反
-        int sign = (dividend > 0) ^ (divisor > 0) ? -1 : 1;
-        boolean rev = false;
-        if (dividend > 0) dividend = -dividend;
-        if (divisor > 0) divisor = -divisor;
-
-        List<Integer> candidates = new ArrayList<Integer>();
-        candidates.add(divisor);
-        int index = 0;
-        // 注意溢出
-        while (candidates.get(index) >= dividend - candidates.get(index)) {
-            candidates.add(candidates.get(index) + candidates.get(index));
-            ++index;
-        }
-        int ans = 0;
-        for (int i = candidates.size() - 1; i >= 0; --i) {
-            if (candidates.get(i) >= dividend) {
-                ans += 1 << i;
-                dividend -= candidates.get(i);
-            }
+        if (a == Integer.MIN_VALUE && b == -1) {
+            return Integer.MAX_VALUE;
         }
 
-        return rev ? -ans : ans;
+        int sign = (a > 0) ^ (b > 0) ? -1 : 1;
+        if (a > 0) a = -a;
+        if (b > 0) b = -b;
+
+        int ans = 0,valueLimit = -1073741824,kLimit = 1073741823;
+        while (a <= b) {
+            int value = b,k = 1;
+            //由于操作数都是负数，因此在倍增的过程中，如果操作数小于Integer.MIN_VALUE
+            //的一半，即value则会发生溢出，所以需要跳过;
+            while (value >= valueLimit && a <= value+value) {
+                value+=value;
+                if (k > kLimit) return Integer.MIN_VALUE;
+                k+=k;
+              }
+            a-=value;
+            ans+=k;
+        }
+
+        return sign == 1 ? ans : -ans;
     }
 }
 
