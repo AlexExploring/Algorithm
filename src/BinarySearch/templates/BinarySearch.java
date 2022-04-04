@@ -1,8 +1,6 @@
 package BinarySearch.templates;
 
-import java.util.Arrays;
-
-public class ErFen {
+public class BinarySearch {
     public static void main(String[] args) {
         int [] arr = {0,3,5,7,8,13,19,21};
         System.out.println(myErfen(arr,5));
