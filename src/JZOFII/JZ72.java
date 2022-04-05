@@ -7,10 +7,6 @@ package JZOFII;
  */
 public class JZ72 {
 
-    public static void main(String[] args) {
-        System.out.println(new JZ72().mySqrt(1));
-    }
-
     public int mySqrt(int x) {
         int low = 0, high = x, ans = -1;
         while (low <= high) {
