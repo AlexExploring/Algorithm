@@ -1,4 +1,8 @@
-package Top100;
+package LinkedList;
+
+/**
+ * ≈≈–Ú¡¥±Ì
+ */
 
 /**
  * ≈≈–Ú¡¥±Ì

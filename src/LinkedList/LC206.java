@@ -2,10 +2,10 @@ package LinkedList;
 
 import java.util.Scanner;
 
-//参考链接 https://mp.weixin.qq.com/s/WNO3KNhS6oU7rUvCNEGw8g
-//案例3：反转单链表。
-//反转单链表。例如链表为：1->2->3->4。反转后为 4->3->2->1
-public class reverse_LB {
+/**
+ * 反转链表
+ */
+public class LC206 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -69,11 +69,5 @@ public class reverse_LB {
             head = next;
         }
         return pre;
-    }
-
-    //反转部分链表节点
-    public static ListNide reversePartialList(ListNide head, int from, int to){
-
-        return head;
     }
 }

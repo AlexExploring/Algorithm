@@ -3,7 +3,7 @@ package Top100;
 import java.util.PriorityQueue;
 
 /**
- * 合并kge升序链表
+ * 合并n个升序链表
  */
 
 public class LC23 {
@@ -38,12 +38,29 @@ public class LC23 {
         return head.next;
     }
 
+    /**
+     * 方法二： 分治合并
+     */
+    public ListNode mergeKLists1(ListNode[] lists) {
+        return merge(lists, 0, lists.length - 1);
+    }
+
+    public ListNode merge(ListNode[] lists, int l, int r) {
+        if (l == r) {
+            return lists[l];
+        }
+        if (l > r) {
+            return null;
+        }
+        int mid = (l + r) >> 1;
+        return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r));
+    }
+
 
     /**
-     * 方法二  使用优先队列
+     * 方法三  使用优先队列
      */
-
-    public ListNode mergeKLists1(ListNode[] lists) {
+    public ListNode mergeKLists2(ListNode[] lists) {
         for (ListNode node: lists) {
             if (node != null) {
                 queue.offer(new Status(node.val, node));

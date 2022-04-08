@@ -21,7 +21,6 @@ public class Quick {
      * @param r
      * @return
      */
-
     public static void quickSort(int array[], int l, int r)
     {
         if (l >= r) return;
@@ -32,7 +31,6 @@ public class Quick {
             //必须先从左向右扫描
             do i ++ ; while (array[i] < x);
             do j -- ; while (array[j] > x);
-            System.out.println(array[i]+"  "+array[j]);
             if (i < j) swap(array,i, j);
         }
         quickSort(array, l, j);
