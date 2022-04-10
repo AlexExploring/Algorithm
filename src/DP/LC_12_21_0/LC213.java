@@ -24,18 +24,18 @@ public class LC213 {
     }
 
     /**
-     *分两种情况讨论，
+     * 分两种情况讨论，
      */
     public static int rob(int[] nums) {
         int len = nums.length;
         int tmax = 0;
-        if (len == 0) return 0;
         if (len == 1) return nums[0];
         if (len == 2) return Math.max(nums[0],nums[1]);
 
         int [] dp = new int[len];
         dp[0] = nums[0];
         dp[1] = Math.max(nums[0],nums[1]);
+        //考虑抢第一个
         for (int i = 2; i < len-1; i++) {
             dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i]);
         }
@@ -44,6 +44,7 @@ public class LC213 {
         Arrays.fill(dp,0);
         dp[1] = nums[1];
         dp[2] = Math.max(nums[1],nums[2]);
+        //不考虑抢第一个
         for (int i = 3; i < len; i++) {
             dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i]);
         }
@@ -56,7 +57,6 @@ public class LC213 {
      */
     public static int rob1(int[] nums) {
         int len = nums.length;
-        if (len == 0) return 0;
         if (len == 1) return nums[0];
         if (len == 2) return Math.max(nums[0],nums[1]);
 
@@ -73,5 +73,29 @@ public class LC213 {
             dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i]);
         }
         return Math.max(dp[len-2],dp[len-1]);
+    }
+
+    /**
+     * 官方题解
+     */
+    public int rob2(int[] nums) {
+        int length = nums.length;
+        if (length == 1) {
+            return nums[0];
+        } else if (length == 2) {
+            return Math.max(nums[0], nums[1]);
+        }
+        //分别考虑不偷最后一家和不偷第一家
+        return Math.max(robRange(nums, 0, length - 2), robRange(nums, 1, length - 1));
+    }
+
+    public int robRange(int[] nums, int start, int end) {
+        int first = nums[start], second = Math.max(nums[start], nums[start + 1]);
+        for (int i = start + 2; i <= end; i++) {
+            int temp = second;
+            second = Math.max(first + nums[i], second);
+            first = temp;
+        }
+        return second;
     }
 }
