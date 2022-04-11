@@ -33,15 +33,15 @@ public class JZ92 {
     public int minFlipsMonoIncr1(String s) {
         int len = s.length();
         char[] words = s.toCharArray();
-        int endsWith0 = (words[0] == '0') ? 0 : 1;
-        int endsWith1 = (words[0] == '1') ? 0 : 1;
+        int endWith0 = (words[0] == '0') ? 0 : 1;
+        int endWith1 = (words[0] == '1') ? 0 : 1;
 
         for(int i=1;i<len;i++){
-            int newEndsWith0 = endsWith0 + (words[i] == '0' ? 0 : 1);
-            endsWith1 = Math.min(endsWith0, endsWith1) + (words[i] == '1' ? 0 : 1);
-            endsWith0 = newEndsWith0;
+            int newEndsWith0 = endWith0 + (words[i] == '0' ? 0 : 1);
+            endWith1 = Math.min(endWith0, endWith1) + (words[i] == '1' ? 0 : 1);
+            endWith0 = newEndsWith0;
         }
 
-        return Math.min(endsWith0, endsWith1);
+        return Math.min(endWith0, endWith1);
     }
 }

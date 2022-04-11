@@ -24,7 +24,6 @@ public class LC198 {
         int len = nums.length;
         int max = 0;
         //对特殊值情况进行处理
-        if (len == 0) return 0;
         if (len == 1) return nums[0];
         if (len == 2) return Math.max(nums[0],nums[1]);
 
@@ -65,7 +64,6 @@ public class LC198 {
     public static int rob1(int [] nums){
         int len = nums.length;
         //对特殊值情况进行处理
-        if (len == 0) return 0;
         if (len == 1) return nums[0];
         int [] dp = new int[len];
         dp[0] = nums[0];
@@ -84,7 +82,6 @@ public class LC198 {
     public static int rob2(int [] nums){
         int len = nums.length;
         //对特殊值情况进行处理
-        if (len == 0) return 0;
         if (len == 1) return nums[0];
         int first = nums[0];
         int second = Math.max(nums[0],nums[1]);
