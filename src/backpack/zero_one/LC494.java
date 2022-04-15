@@ -1,4 +1,4 @@
-package Top100;
+package backpack.zero_one;
 
 /**
  * 目标和
@@ -30,9 +30,6 @@ public class LC494 {
 
     /**
      * 方法2：0,1背包
-     *
-     * 定义二维数组 dp，其中 dp[i][j] 表示在数组nums的前i个数中选取元素，使得这些元素之和等于j
-     * 的方案数。假设数组 nums 的长度为 nn，则最终答案为 dp[n][neg]。
      */
     public int findTargetSumWays1(int[] nums, int target) {
         int sum = 0;
@@ -44,7 +41,6 @@ public class LC494 {
             return 0;
         }
         int n = nums.length, neg = diff / 2;
-
         int[][] dp = new int[n + 1][neg + 1];
         dp[0][0] = 1;
         for (int i = 1; i <= n; i++) {
@@ -75,7 +71,6 @@ public class LC494 {
         int[] dp = new int[neg + 1];
         dp[0] = 1;
         for (int num : nums) {
-            //内层循环需采用倒序遍历的方式，这种方式保证转移来的是dp[i?1][] 中的元素值。
             for (int j = neg; j >= num; j--) {
                 dp[j] += dp[j - num];
             }

@@ -1,4 +1,4 @@
-package backpack;
+package backpack.complete;
 
 import java.util.Scanner;
 
