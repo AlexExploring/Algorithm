@@ -1,4 +1,4 @@
-package DP.LC_12_20_0_jz;
+package DP.matrix;
 
 import java.util.Arrays;
 import java.util.Stack;

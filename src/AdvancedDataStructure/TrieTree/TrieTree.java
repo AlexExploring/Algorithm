@@ -1,6 +1,7 @@
-package AdvancedDataStructure.Trie;
+package AdvancedDataStructure.TrieTree;
 
 public class TrieTree {
+
     private int SIZE=26;
     private TrieNode root;//字典树的根
 
@@ -73,6 +74,7 @@ public class TrieTree {
         }
         return node.num;
     }
+
     //打印指定前缀的单词
     public String hasPrefix(String prefix)
     {

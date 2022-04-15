@@ -1,4 +1,4 @@
-package DP.LC_12_18_0_sz;
+package DP.array;
 
 import java.util.Arrays;
 import java.util.Scanner;

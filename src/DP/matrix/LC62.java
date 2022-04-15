@@ -1,4 +1,4 @@
-package DP.LC_12_20_0_jz;
+package DP.matrix;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,28 +10,19 @@ import java.util.Scanner;
 //问总共有多少条不同的路径？
 public class LC62 {
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int m = scan.nextInt();
-        int n = scan.nextInt();
-        System.out.println(uniquePaths3(m,n));
-    }
-
     /**
      *动态规划
      */
-    public static int uniquePaths(int m,int n){
-        if (m <= 0 || n <= 0)
-            return 0;
+    public int uniquePaths(int m,int n){
         int [][] dp = new int[m][n];
 
-        //在第一行 只能从左向右一种走法
-        for (int i=0;i<m;i++){
-            dp[i][0]=1;
-        }
-        //第一列 只能从上到下一种走法
+        //在第一行 只有从左向右一种走法
         for (int i=0;i<n;i++){
             dp[0][i]=1;
+        }
+        //第一列 只有从上到下一种走法
+        for (int i=0;i<m;i++){
+            dp[i][0]=1;
         }
 
         for (int i=1;i < m;i++){
@@ -52,10 +43,7 @@ public class LC62 {
      * 案产生影响，因此我们总可以通过交换 m 和 n 使得 m≤n，这样空间复
      * 杂度降低至 O(min(m,n))。
      */
-    public static int uniquePaths1(int m,int n){
-        //优化
-        if (m <= 0 || n <= 0)
-            return 0;
+    public int uniquePaths1(int m,int n){
         int [] dp = new int[n];
 
         Arrays.fill(dp,1);
@@ -72,7 +60,7 @@ public class LC62 {
     /**
      *递归
      */
-    public static int uniquePaths2(int m, int n) {
+    public int uniquePaths2(int m, int n) {
         return uniquePathsHelper(1, 1, m, n);
     }
 
@@ -97,11 +85,11 @@ public class LC62 {
      *避免重复计算 见 LC62.png
      */
 
-    public static int uniquePaths3(int m, int n) {
+    public int uniquePaths3(int m, int n) {
         return uniquePathsHelper1(1, 1, m, n,new HashMap<>());
     }
 
-    public static int uniquePathsHelper1(int i, int j, int m, int n, Map<String,Integer> map) {
+    public int uniquePathsHelper1(int i, int j, int m, int n, Map<String,Integer> map) {
         if (i>m||j>n)
             return 0;
         if (i==m&&j==n)
@@ -122,15 +110,11 @@ public class LC62 {
      *组合数学
      */
 
-    public static int uniquePaths4(int m,int n){
+    public int uniquePaths4(int m,int n){
         long ans = 1;
         for (int x = n, y = 1; y < m; ++x, ++y) {
             ans = ans * x / y;
         }
         return (int) ans;
-
     }
-    
-
-
 }

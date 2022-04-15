@@ -1,4 +1,4 @@
-package DP.LC_12_19_0_zfc;
+package DP.string;
 //最大公共子串
 public class Main
 {

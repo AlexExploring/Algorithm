@@ -1,4 +1,4 @@
-package DP.LC_12_19_0_zfc;
+package DP.string;
 
 //动态规划
 //一个回文去掉两头后仍然是回文，
