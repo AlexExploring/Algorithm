@@ -10,6 +10,10 @@ import java.util.Set;
  * 和 LC128相同
  */
 public class JZ119 {
+
+    /**
+     * 先排序，再判断
+     */
     public int longestConsecutive(int[] nums) {
         int len = nums.length;
         if (len < 2) return len;
@@ -30,6 +34,9 @@ public class JZ119 {
         return Math.max(cur,ans);
     }
 
+    /**
+     * 使用set存储所有的数字
+     */
     public int longestConsecutive1(int[] nums) {
         Set<Integer> numSet = new HashSet<>();
         for (int num : nums) {
@@ -38,11 +45,11 @@ public class JZ119 {
 
         int ans = 0;
         for (Integer num : numSet) {
+            //确保每一个连续序列都是从最小的数字开始的
             if (!numSet.contains(num-1)) {
                 int curNum = num;
                 int curAns = 1;
-                while (numSet.contains(curNum+1)) {
-                    curNum += 1;
+                while (numSet.contains(++curNum)) {
                     curAns += 1;
                 }
                 ans = Math.max(ans,curAns);
