@@ -13,6 +13,7 @@ public class LC713 {
         int count = 1, ans = 0, left = 0;
         for (int right = 0; right < nums.length; right++) {
             count *= nums[right];
+            //ע�⣺left++
             while (count >= k) count /= nums[left++];
             ans += right - left + 1;
         }

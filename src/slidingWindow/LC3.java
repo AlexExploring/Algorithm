@@ -31,7 +31,7 @@ public class LC3 {
     }
 
     /**
-     * 避免重复的对set进行clear
+     * 避免重复的对set进行clear操作
      */
     public int lengthOfLongestSubstring1(String s) {
         // 哈希集合，记录每个字符是否出现过
@@ -44,11 +44,10 @@ public class LC3 {
                 // 左指针向右移动一格，移除一个字符
                 set.remove(s.charAt(i - 1));
             }
-            //rk不断向右
+            // 判断下一个字符是否已经在set中
             while (rk + 1 < n && !set.contains(s.charAt(rk + 1))) {
                 // 不断地移动右指针
-                set.add(s.charAt(rk + 1));
-                ++rk;
+                set.add(s.charAt(++rk));
             }
             // 第 i 到 rk 个字符是一个极长的无重复字符子串
             ans = Math.max(ans, rk - i + 1);
@@ -56,15 +55,15 @@ public class LC3 {
         return ans;
     }
 
-    /**
-     *这种写法，省去了大量不必要的增删操作，从而节省了大量的时间
-     */
+        /**
+         * 这种写法，省去了大量不必要的增删操作，从而节省了大量的时间
+         */
     public int lengthOfLongestSubstring2(String s) {
         Map<Character, Integer> dic = new HashMap<>();
         int i = -1, res = 0;
         for(int j = 0; j < s.length(); j++) {
             if(dic.containsKey(s.charAt(j)))
-                i = Math.max(i, dic.get(s.charAt(j))); // 更新左指针 i
+                i = Math.max(i, dic.get(s.charAt(j))); // 更新左指针 i，保证计算结果的时候，i是当前字符的最先下标
             dic.put(s.charAt(j), j); // 哈希表记录
             res = Math.max(res, j - i); // 更新结果
         }

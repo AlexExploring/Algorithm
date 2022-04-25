@@ -71,6 +71,7 @@ public class LC209 {
         int sum = 0;
         while (end<len) {
             sum+=nums[end];
+            //值要sum >= target 就需要循环更新ans
             while (sum>=target) {
                 ans = Math.min(ans,end-start+1);
                 sum-=nums[start];
