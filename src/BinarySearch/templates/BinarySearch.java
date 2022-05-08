@@ -8,17 +8,17 @@ public class BinarySearch {
         System.out.print(myErfen2(arr,8));
     }
 
-    //二分的基础应用  搜索和目标值相等的数的下标
+    //二分的基础应用  搜索和目标值相等的数的下标 , 没找到则返回-1
     public static int myErfen(int [] arr,int target){
-        int left = 0,right = arr.length-1;
-        while(left <= right){
-            int mid = left + (right-left)/2;
+        int l = 0,r = arr.length-1;
+        while(l <= r){
+            int mid = l + (r-l)/2;
             if(target==arr[mid]) {
                 return mid;
             }else if(target>arr[mid]) {
-                left=mid+1;
+                l=mid+1;
             }else{
-                right=mid-1;
+                r=mid-1;
             }
         }
         //没找到返回-1
@@ -28,31 +28,31 @@ public class BinarySearch {
     //查找arr中第一个不小于目标值的数的下标，需要注意目标数并不一定在数组中
     public static int myErfen1(int [] arr,int target){
 
-        int left = 0,right = arr.length - 1;
-        while (left <= right){
-            int mid = left + (right - left)/2;
+        int l = 0,r = arr.length - 1;
+        while (l <= r){
+            int mid = l + (r - l)/2;
             if (arr[mid] < target){
-                left = mid + 1;
+                l = mid + 1;
             }else {
-                right = mid - 1;
+                r = mid - 1;
             }
         }
-        return left>arr.length-1 ? -1:left;
+        return l>arr.length-1 ? -1:l;
     }
 
     //查找arr中第一个大于目标值的数的标，需要注意目标数并不一定在数组中
     public static int myErfen2(int [] arr,int target){
 
-        int left = 0,right = arr.length - 1;
-        while (left <= right){
-            int mid = left + (right - left)/2;
+        int l = 0,r = arr.length - 1;
+        while (l <= r){
+            int mid = l + (r - l)/2;
             if (arr[mid] <= target){
-                left = mid + 1;
+                l = mid + 1;
             }else {
-                right = mid-1;
+                r = mid-1;
             }
         }
-        return left>(arr.length-1) ? -1:left;
+        return l>(arr.length-1) ? -1:l;
     }
 }
 

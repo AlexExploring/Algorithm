@@ -1,71 +1,31 @@
 package LinkedList;
 
-import java.util.Scanner;
-
 /**
- * åè½¬é“¾è¡¨
+ * ·´×ªÁ´±í
  */
 public class LC206 {
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int n = scan.nextInt();
-
-        ListNide head = null,tail = null;
-        for (int i=0;i < n;i++){
-            ListNide s = new ListNide();
-            s.data = scan.nextInt();
-            if (i==0){
-                head = s;
-            }
-            else tail.next=s;
-            tail=s;
-        }
-        tail.next=null;
-
-        ListNide p = head;
-        while (p != null){
-            System.out.println(p.data);
-            p = p.next;
-        }
-        System.out.println();
-        ListNide newList = reverseList1(head);
-        System.out.println("åè½¬å");
-        ListNide p1 = newList;
-        while (p1 != null){
-            System.out.println(p1.data);
-            p1 = p1.next;
-        }
-
-    }
-
-    public static ListNide reverseList(ListNide head){
-        //å½“å•é“¾è¡¨ä¸ºç©ºæˆ–è€…åªæœ‰ä¸€ä¸ªèŠ‚ç‚¹
+    public ListNode reverseList(ListNode head){
+        //µ±µ¥Á´±íÎª¿Õ»òÕßÖ»ÓĞÒ»¸ö½Úµã
         if (head == null || head.next == null){
             return head;
         }
-        //é€’å½’åè½¬ å­é“¾è¡¨
-        ListNide newList = reverseList(head.next);
+        //µİ¹é·´×ª ×ÓÁ´±í
+        ListNode newHead = reverseList(head.next);
 
-        //æ”¹å˜1ï¼Œ2èŠ‚ç‚¹çš„æŒ‡å‘
-        //é€šè¿‡head.nextè·å–èŠ‚ç‚¹2
-        ListNide t1 = head.next;
-        t1.next = head;
+        head.next.next = head;
         head.next = null;
-        return newList;
+        return newHead;
     }
 
-    //1->2->3->4->5 ç¿»è½¬å å¯ä»¥çœ‹ä½œæ˜¯1<-2<-3<-4<-5 åœ¨è¿™ä¸€è¿‡ç¨‹ä¸­ preä»1ç§»åˆ°5
-    public static ListNide reverseList1(ListNide head){
-        ListNide next = null;//å½“å‰èŠ‚ç‚¹çš„åé©±ï¼Œç”±äºä¸­é€”é“¾è¡¨ä¼šè¢«æˆªæ–­ï¼Œé˜²æ­¢ä¿¡æ¯ä¸¢å¤±ã€‚
-        ListNide pre = null;
+    //1->2->3->4->5 ·­×ªºó ¿ÉÒÔ¿´×÷ÊÇ1<-2<-3<-4<-5 ÔÚÕâÒ»¹ı³ÌÖĞ pre´Ó1ÒÆµ½5
+    public ListNode reverseList1(ListNode head) {
+        ListNode next = null;//µ±Ç°½ÚµãµÄºóÇı£¬ÓÉÓÚÖĞÍ¾Á´±í»á±»½Ø¶Ï£¬·ÀÖ¹ĞÅÏ¢¶ªÊ§¡£
+        ListNode pre = null;
         while (head != null){
             next = head.next;
-            //å½“å‰èŠ‚ç‚¹çš„åé©±æŒ‡å‘å‰é©±
             head.next = pre;
-            //æ›´æ–°preæŒ‡å‘çš„ä½ç½®ï¼Œåˆå§‹æ—¶preæŒ‡å‘null
             pre = head;
-            //å¤„ç†ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
             head = next;
         }
         return pre;
