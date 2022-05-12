@@ -32,7 +32,7 @@ public class LC1122 {
                 ans[index++] = el1;
             }
         }
-        //对无序部分排序
+        //对无序部分排序LC
         Arrays.sort(ans, start, arr1.length);
         return ans;
     }

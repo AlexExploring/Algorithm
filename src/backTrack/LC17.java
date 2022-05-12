@@ -2,10 +2,6 @@ package backTrack;
 
 import java.util.*;
 
-/**
- * @author zhxspacex
- * @date 2021/1/10 23:02
- */
 public class LC17 {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
@@ -21,6 +17,7 @@ public class LC17 {
         if (digits==null){
             return ans;
         }
+
         int len = digits.length();
         initMap();
         char [] t = digits.toCharArray();

@@ -48,7 +48,6 @@ public class LC46_1 {
         return null;
     }
 
-
     //返回n的阶乘，如3!=3*2*1=6
     private int factorial(int n) {
         int res = 1;

@@ -3,7 +3,9 @@ package backTrack.combination;
 import java.util.*;
 
 /**
- *无重复数字，n个数中选择k个数
+ * 组合：无重复数字，n个数中选择k个数
+ *
+ * n个数为 [1~n]
  */
 public class LC77 {
 

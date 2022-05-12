@@ -8,7 +8,6 @@ public class java高效输入输出 {
             double v = scan.nextDouble();
             System.out.println(v);
         }
-
     }
 
     static class InputReader{
