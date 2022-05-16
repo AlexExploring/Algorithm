@@ -9,12 +9,16 @@ public class backPack_01 {
 
     /**
      * dp[i][j]表示前i个物品，背包容量j下的最优值
+     * @param n 物品数量
+     * @param v 背包容量
+     * @param V 体积
+     * @param W 价值
      */
     public int solve(int n,int v,int [] V,int [] W){
         int [][] dp = new int[1001][1001];
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j <= v; j++) {
-                if (j<V[i]){
+                if (j < V[i]){
                     //不能选
                     dp[i][j] = dp[i-1][j];
                 }else {
@@ -26,6 +30,9 @@ public class backPack_01 {
         return dp[n][v];
     }
 
+    /**
+     * 使用滚动数组优化空间复杂度
+     */
     public static int solve1(int n,int v,int [] V,int [] W){
         int [] dp = new int[1001];
         for (int i = 1; i <= n; i++) {

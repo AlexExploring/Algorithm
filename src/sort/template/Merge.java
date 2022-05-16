@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Merge {
 
     public static void main(String[] args) {
-        int [] a = {5,6,4345,3,6,32412,4234,235,562423};
+        int [] a = {8,7,9,5,2};
         new Merge().mergeSort(a,0,a.length-1);
         System.out.println(Arrays.toString(a));
     }
@@ -42,7 +42,6 @@ public class Merge {
         //数据中转数组
         int[] temp = new int[right-left+1];
         int i = left;
-        // 为什么是mid+1？因为 [left,mid],在之前merge操作中，已经有序，
         int j = mid +1;
         int t = 0;//temp数组的当前索引
 

@@ -1,9 +1,9 @@
-package JZOFII;
+package DP.string;
 
 /**
- * 字符串交织 （和LC97相同 : 交错字符串）
+ * 交错字符串
  */
-public class JZ96 {
+public class LC97 {
 
     /**
      * 状态定义: boolean[][] dp ，dp[i][j] 代表 s1 前 i 个字符与 s2 前 j
@@ -18,6 +18,7 @@ public class JZ96 {
      */
     public boolean isInterleave(String s1, String s2, String s3) {
         int len1 = s1.length(),len2 = s2.length(),len3 = s3.length();
+
         if (len1+len2 != len3) return false;
 
         boolean [][] dp = new boolean[len1+1][len2+1];

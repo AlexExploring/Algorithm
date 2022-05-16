@@ -9,7 +9,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
- *最大矩形
+ * 最大矩形
  * 相关题目
  */
 public class LC85 {

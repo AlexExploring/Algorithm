@@ -34,7 +34,7 @@ public class CompleteBackpack {
         for(int i = 1 ; i <= n ; i++) {
             for (int j = 0; j <= m; j++) {
                 dp[i][j] = dp[i - 1][j];
-                if (j - v[i] >= 0)
+                if (j >= v[i])
                     dp[i][j] = Math.max(dp[i][j], dp[i][j - v[i]] + w[i]);
             }
         }

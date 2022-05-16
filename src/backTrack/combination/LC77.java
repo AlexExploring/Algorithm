@@ -3,7 +3,7 @@ package backTrack.combination;
 import java.util.*;
 
 /**
- * 组合：无重复数字，n个数中选择k个数
+ * 组合：无重复数字，n个数中选择k个数,每个数不可重复选择
  *
  * n个数为 [1~n]
  */

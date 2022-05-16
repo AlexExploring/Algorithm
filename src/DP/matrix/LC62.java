@@ -3,11 +3,16 @@ package DP.matrix;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
-//一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
-//机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
-//问总共有多少条不同的路径？
+/**
+ * LC62不同路径，相关题目LC63，不同路径II
+ *
+ * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+ * 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+ * 问总共有多少条不同的路径？
+ */
+
+
 public class LC62 {
 
     /**
@@ -30,6 +35,7 @@ public class LC62 {
                 dp[i][j] = dp[i-1][j]+dp[i][j-1];
             }
         }
+
         return dp[m-1][n-1];
     }
 
@@ -46,14 +52,15 @@ public class LC62 {
     public int uniquePaths1(int m,int n){
         int [] dp = new int[n];
 
+        //处理第一行
         Arrays.fill(dp,1);
 
         for (int i=1;i < m;i++){
             for (int j = 1;j < n;j++){
-                dp[j] = dp[j-1]+dp[j];//dp[j] = dp[j-1]+dp[j] 第二个dp[j]实际上存储的是上一行第j+1列的值，dp[j-1]实际上
-                //其左边的值
+                dp[j] = dp[j-1]+dp[j];
             }
         }
+
         return dp[n-1];
     }
 
@@ -69,7 +76,7 @@ public class LC62 {
         //边界条件的判断
         if (i > m || j > n)
             return 0;
-        if ((i == m && j == n))
+        if (i == m && j == n)
             return 1;
         //从右边走有多少条路径
         int right = uniquePathsHelper(i + 1, j, m, n);
@@ -84,32 +91,29 @@ public class LC62 {
      *
      *避免重复计算 见 LC62.png
      */
-
     public int uniquePaths3(int m, int n) {
         return uniquePathsHelper1(1, 1, m, n,new HashMap<>());
     }
 
     public int uniquePathsHelper1(int i, int j, int m, int n, Map<String,Integer> map) {
-        if (i>m||j>n)
+        //边界条件的判断
+        if (i > m || j > n)
             return 0;
-        if (i==m&&j==n)
+        if (i == m && j == n)
             return 1;
         String key = i+"*"+j;
         if (map.containsKey(key))
             return map.get(key);
         int down = uniquePathsHelper1(i,j+1,m,n,map);
         int right = uniquePathsHelper1(i+1,j,m,n,map);
-        int totla = right + down;
-        map.put(key, totla);
-        return totla;
+        int total = right + down;
+        map.put(key, total);
+        return total;
     }
 
-
-    
     /**
      *组合数学
      */
-
     public int uniquePaths4(int m,int n){
         long ans = 1;
         for (int x = n, y = 1; y < m; ++x, ++y) {

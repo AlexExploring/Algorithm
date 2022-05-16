@@ -3,11 +3,11 @@ import java.util.StringTokenizer;
 
 public class java高效输入输出 {
     public static void main(String[] args) throws IOException {
-        while (true){
-            InputReader scan = new InputReader(System.in);
-            double v = scan.nextDouble();
-            System.out.println(v);
-        }
+        //while (true){
+        //    InputReader scan = new InputReader(System.in);
+        //    double v = scan.nextDouble();
+        //    System.out.println(v);
+        //}
     }
 
     static class InputReader{

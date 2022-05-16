@@ -1,11 +1,11 @@
-package JZOFII;
+package DP.matrix;
 
 import java.util.List;
 
 /**
  * 三角形中最小路径之和（和LC120相同）
  */
-public class JZ100 {
+public class LC120 {
 
     /**
      * 从上到下的动态规划
@@ -14,11 +14,14 @@ public class JZ100 {
         int n = triangle.size();
         int[][] dp = new int[n][n];
         dp[0][0] = triangle.get(0).get(0);
+
         for (int i = 1; i < n; i++) {
+            //处理第一列
             dp[i][0] = dp[i - 1][0] + triangle.get(i).get(0);
             for (int j = 1; j < i; j++) {
                 dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j]) + triangle.get(i).get(j);
             }
+            //处理最后一列
             dp[i][i] = dp[i - 1][i - 1] + triangle.get(i).get(i);
         }
 
@@ -100,5 +103,19 @@ public class JZ100 {
     /**
      * 记忆化递归
      */
+    Integer [][] memo;
+    public int minimumTotal5(List<List<Integer>> triangle) {
+        memo = new Integer[triangle.size()][triangle.size()];
+        return  dfs(triangle, 0, 0);
+    }
 
+    private int dfs5(List<List<Integer>> triangle, int i, int j) {
+        if (i == triangle.size()) {
+            return 0;
+        }
+        if (memo[i][j] != null) {
+            return memo[i][j];
+        }
+        return memo[i][j] = Math.min(dfs5(triangle, i + 1, j), dfs5(triangle, i + 1, j + 1)) + triangle.get(i).get(j);
+    }
 }

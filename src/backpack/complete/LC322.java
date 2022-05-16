@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * 零钱兑换 和JZ103（相同）
+ * 零钱兑换 相关题目 LC518 零钱兑换II
  */
 public class LC322 {
 
@@ -16,6 +16,7 @@ public class LC322 {
     public static int coinChange(int [] a,int amount){
         int max = amount + 1;
         int [] dp = new int[amount + 1];
+        //必须要填充
         Arrays.fill(dp, max);
         dp[0] = 0;
         for (int i = 1; i <= amount; i++) {

@@ -18,22 +18,28 @@ public class LC416 {
         if (n < 2) {
             return false;
         }
+
+        //计算nums的总和sum，和nums的最大值maxNum
         int sum = 0, maxNum = 0;
         for (int num : nums) {
             sum += num;
             maxNum = Math.max(maxNum, num);
         }
+
+        //sum不为偶数，不可能分为两半
         if (sum % 2 != 0) {
             return false;
         }
+
         // sum为偶数时,最大数大于和的1/2,则数组必然不可能划分为等和的两部分
         int target = sum / 2;
         if (maxNum > target) {
             return false;
         }
+
         // dp数组初始化
         boolean[][] dp = new boolean[n][target + 1];
-        //dp[i][0] 还没有选择任何数
+        //不选取任何正整数，则被选取的正整数等于 0，因此对于所有 0≤i<n，都有 dp[i][0]=true
         for (int i = 0; i < n; i++) {
             dp[i][0] = true;
         }
@@ -62,18 +68,22 @@ public class LC416 {
         if (n < 2) {
             return false;
         }
+
         int sum = 0, maxNum = 0;
         for (int num : nums) {
             sum += num;
             maxNum = Math.max(maxNum, num);
         }
+
         if (sum % 2 != 0) {
             return false;
         }
+
         int target = sum / 2;
         if (maxNum > target) {
             return false;
         }
+
         boolean[] dp = new boolean[target + 1];
         dp[0] = true;
         for (int i = 0; i < n; i++) {
