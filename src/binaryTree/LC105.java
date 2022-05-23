@@ -4,51 +4,60 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *ä»å‰åºä¸ä¸­åºéå†åºåˆ—æ„é€ äºŒå‰æ ‘
- * æœ¬è´¨ä¸Šå°±æ˜¯ä¸æ–­çš„æ‰¾åˆ°å„å­æ ‘çš„çš„æ ¹èŠ‚ç‚¹ï¼Œé€æ­¥çš„è¿˜åŸäºŒå‰æ ‘çš„ç»“æ„ï¼Œç›´åˆ°ç¡®å®šäº†æ‰€æœ‰çš„èŠ‚ç‚¹çš„ä½ç½®ä¹‹å,
- * ä¹Ÿå°±è¿˜åŸäº†å®Œæ•´çš„äºŒå‰æ ‘ã€‚ã€‚ã€‚
+ * ´ÓÇ°ĞòÓëÖĞĞò±éÀúĞòÁĞ¹¹Ôì¶ş²æÊ÷  (Ïà¹ØÌâÄ¿£ºLC106)
  */
 public class LC105 {
 
     public static void main(String[] args) {
-        int [] preorder = {3,9,20,15,7};
-        int [] inorder = {9,3,15,20,7};
-        TreeNode root = buildTree(preorder,inorder);
+        int[] preorder = {3,9,20,15,7};
+        int[] inorder = {9,3,15,20,7};
+        new LC105().buildTree(preorder,inorder);
+
     }
-    static Map<Integer, Integer> indexMap;
-    public static TreeNode buildTree(int[] preorder, int[] inorder) {
-        int n = preorder.length;
-        // æ„é€ å“ˆå¸Œæ˜ å°„ï¼Œå¸®åŠ©æˆ‘ä»¬å¿«é€Ÿå®šä½æ ¹èŠ‚ç‚¹
+
+    private int [] preorder;
+    private int [] inorder;
+    private Map<Integer, Integer> indexMap;
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int len = preorder.length;
+        this.preorder = preorder;
+        this.inorder = preorder;
+
+        // ´ÓÖĞĞò¹¹Ôì¹şÏ£Ó³Éä£¬°ïÖúÎÒÃÇ¿ìËÙ¶¨Î»¸ù½Úµã
         indexMap = new HashMap<Integer, Integer>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < len; i++) {
             indexMap.put(inorder[i], i);
         }
-        return myBuildTree(preorder, inorder, 0, n - 1, 0, n - 1);
 
+        return recursion(0, len - 1, 0, len - 1);
     }
 
-    public static TreeNode myBuildTree(int[] preorder, int[] inorder, int preorder_left, int preorder_right,
-                                        int inorder_left, int inorder_right) {
-        if (preorder_left > preorder_right) {
+    /**
+     * ºËĞÄÔÚÓÚÍ¨¹ıÇ°Ğò±éÀúµÄË³ĞòÏÈÈ·¶¨¸ù½Úµã£¬ÔÙ¼ÆËã×ó×ÓÊ÷µÄ´óĞ¡£¬µİ¹éµÄ½¨Á¢×ó×ÓÊ÷ºÍÓÒ×ÓÊ÷
+     */
+    public TreeNode recursion(int pre_left, int pre_right, int in_left, int in_right) {
+
+        if (pre_left > pre_right) {
             return null;
         }
-        // å‰åºéå†ä¸­çš„ç¬¬ä¸€ä¸ªèŠ‚ç‚¹å°±æ˜¯æ ¹èŠ‚ç‚¹
-        int preorder_root = preorder_left;
-        // åœ¨ä¸­åºéå†ä¸­å®šä½æ ¹èŠ‚ç‚¹
-        int inorder_root = indexMap.get(preorder[preorder_root]);
 
-        // å…ˆæŠŠæ ¹èŠ‚ç‚¹å»ºç«‹å‡ºæ¥
-        TreeNode root = new TreeNode(preorder[preorder_root]);
-        // å¾—åˆ°å·¦å­æ ‘ä¸­çš„èŠ‚ç‚¹æ•°ç›®
-        int size_left_subtree = inorder_root - inorder_left;
-        // é€’å½’åœ°æ„é€ å·¦å­æ ‘ï¼Œå¹¶è¿æ¥åˆ°æ ¹èŠ‚ç‚¹
-        // å…ˆåºéå†ä¸­ã€Œä» å·¦è¾¹ç•Œ+1 å¼€å§‹çš„ size_left_subtreeã€ä¸ªå…ƒç´ å°±å¯¹åº”äº†ä¸­åºéå†ä¸­ã€Œä» å·¦è¾¹ç•Œ å¼€å§‹åˆ° æ ¹èŠ‚ç‚¹å®šä½-1ã€çš„å…ƒç´ 
-        root.left = myBuildTree(preorder, inorder, preorder_left + 1,
-                preorder_left + size_left_subtree, inorder_left, inorder_root - 1);
-        // é€’å½’åœ°æ„é€ å³å­æ ‘ï¼Œå¹¶è¿æ¥åˆ°æ ¹èŠ‚ç‚¹
-        // å…ˆåºéå†ä¸­ã€Œä» å·¦è¾¹ç•Œ+1+å·¦å­æ ‘èŠ‚ç‚¹æ•°ç›® å¼€å§‹åˆ° å³è¾¹ç•Œã€çš„å…ƒç´ å°±å¯¹åº”äº†ä¸­åºéå†ä¸­ã€Œä» æ ¹èŠ‚ç‚¹å®šä½+1 åˆ° å³è¾¹ç•Œã€çš„å…ƒç´ 
-        root.right = myBuildTree(preorder, inorder, preorder_left + size_left_subtree + 1,
-                preorder_right, inorder_root + 1, inorder_right);
+        // Ç°Ğò±éÀúÖĞµÄµÚÒ»¸ö½Úµã¾ÍÊÇ¸ù½Úµã
+        int pre_root = pre_left;
+        // ÔÚÖĞĞò±éÀúÖĞ¶¨Î»¸ù½Úµã
+        int in_root = indexMap.get(preorder[pre_root]);
+
+        // ÏÈ°Ñ¸ù½Úµã½¨Á¢³öÀ´
+        TreeNode root = new TreeNode(preorder[pre_root]);
+        // µÃµ½×ó×ÓÊ÷ÖĞµÄ½ÚµãÊıÄ¿
+        int left_size = in_root - in_left;
+        // µİ¹éµØ¹¹Ôì×ó×ÓÊ÷£¬²¢Á¬½Óµ½¸ù½Úµã
+        // ÏÈĞò±éÀúÖĞ¡¸´Ó ×ó±ß½ç+1 ¿ªÊ¼µÄ left_size¡¹¸öÔªËØ¾Í¶ÔÓ¦ÁËÖĞĞò±éÀúÖĞ¡¸´Ó ×ó±ß½ç ¿ªÊ¼µ½ ¸ù½Úµã¶¨Î»-1¡¹µÄÔªËØ
+        root.left = recursion(pre_left + 1, pre_left + left_size, in_left, in_root - 1);
+        // µİ¹éµØ¹¹ÔìÓÒ×ÓÊ÷£¬²¢Á¬½Óµ½¸ù½Úµã
+        // ÏÈĞò±éÀúÖĞ¡¸´Ó ×ó±ß½ç+1+×ó×ÓÊ÷½ÚµãÊıÄ¿ ¿ªÊ¼µ½ ÓÒ±ß½ç¡¹µÄÔªËØ¾Í¶ÔÓ¦ÁËÖĞĞò±éÀúÖĞ¡¸´Ó ¸ù½Úµã¶¨Î»+1 µ½ ÓÒ±ß½ç¡¹µÄÔªËØ
+        root.right = recursion(pre_left + left_size + 1, pre_right, in_root + 1, in_right);
+
         return root;
     }
 }

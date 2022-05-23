@@ -1,7 +1,5 @@
 package graphTheory.unionFind;
 
-import java.util.Arrays;
-
 /**
  * 相似的字符串
  */
@@ -24,14 +22,7 @@ public class LC839 {
             }
         }
 
-        System.out.println(Arrays.toString(parent));
-
         return ans;
-    }
-
-    public int find(int [] parent,int x) {
-        if (parent[x] != x) parent[x] = find(parent,parent[x]);
-        return parent[x];
     }
 
     public boolean union(int [] parent,int x,int y) {
@@ -41,17 +32,24 @@ public class LC839 {
         return px!=py;
     }
 
+    public int find(int [] parent,int x) {
+        if (parent[x] != x) parent[x] = find(parent,parent[x]);
+        return parent[x];
+    }
+
     /**
-     * 判断两个字符串是否相似
+     * 判断两个字符串是否相似，只要小于等于两个位置的字符不相等，则两个字符串相似
      */
     public boolean isSimilar(String a,String b) {
         if (a.length() != b.length()) return false;
+
         for (int i = 0,count = 0; i < a.length(); i++) {
             if (a.charAt(i) != b.charAt(i)) {
                 count++;
                 if (count > 2) return false;
             }
         }
+
         return true;
     }
 }

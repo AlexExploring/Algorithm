@@ -17,7 +17,7 @@ public class JZ55I {
     }
 
     int max = 0;
-    public void helper(TreeNode root,int index) {
+    public void helper(TreeNode root, int index) {
         if (root!=null){
             helper(root.left,index++);
             helper(root.right,index++);

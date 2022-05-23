@@ -8,7 +8,7 @@ public class JZ28 {
         return isMirror(root,root);
     }
 
-    public boolean isMirror(TreeNode p,TreeNode q) {
+    public boolean isMirror(TreeNode p, TreeNode q) {
         if (p==null && q==null) return true;
         if (p==null || q==null) return false;
 

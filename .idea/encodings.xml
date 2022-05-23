@@ -2,9 +2,11 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/src" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/DP/math/LC343.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/DP/math/LC343.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/DP/string/LC97.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/DP/string/LC97I.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/DP/subsequence/LC115.png" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/JZOF/DP/JZ14.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/JZOFII/JZ97.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/Math/BigNumber/basic_operations.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/UnionFind/NetworkAnalysis2069.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/backTrack/arrangement/LC47I.png" charset="UTF-8" />

@@ -11,6 +11,7 @@ public class LC70 {
     
     /**
      * 递推
+     * 注意 n >= 1 ; n <= 45
      */
     public int climbStairs(int n){
         int p = 0,q = 1,sum = 0;

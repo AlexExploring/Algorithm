@@ -13,21 +13,25 @@ public class LC206 {
         //递归反转 子链表
         ListNode newHead = reverseList(head.next);
 
+        //反向连接
         head.next.next = head;
+        //断开正向的连接
         head.next = null;
+
         return newHead;
     }
 
     //1->2->3->4->5 翻转后 可以看作是1<-2<-3<-4<-5 在这一过程中 pre从1移到5
     public ListNode reverseList1(ListNode head) {
-        ListNode next = null;//当前节点的后驱，由于中途链表会被截断，防止信息丢失。
         ListNode pre = null;
+
         while (head != null){
-            next = head.next;
+            ListNode next = head.next;
             head.next = pre;
             pre = head;
             head = next;
         }
+
         return pre;
     }
 }

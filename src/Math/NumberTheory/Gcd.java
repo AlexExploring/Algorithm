@@ -9,13 +9,8 @@ import java.util.Scanner;
 public class Gcd{
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println(gcd(2, 4));
-        System.out.println("=======================");
-        extendGcd(2,4);
-        System.out.println(x+"  "+y);
-        int x1 = x*(8/gcd(2,4));
-        int x2 = y*(8/gcd(2,4));
-        System.out.println(x1+" "+x2);
+        System.out.println(lcm(55,495));
+
     }
 
     /**

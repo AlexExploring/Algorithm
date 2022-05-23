@@ -39,7 +39,7 @@ public class JZ54 {
 
     int n_th = 0,res = 0;
 
-    public void backTrack2(TreeNode root,int k) {
+    public void backTrack2(TreeNode root, int k) {
         if (root!=null&&n_th<=k){
             backTrack2(root.right,k);
             n_th++;

@@ -13,11 +13,10 @@ import java.util.Set;
  *
  */
 public class JZ3 {
-    public static void main(String[] args) {
-        int [] nums = {2,3,1,0,2,5,3};
-        System.out.println(findRepeatNumber(nums));
-    }
 
+    /**
+     * 排序
+     */
     public static int findRepeatNumber(int[] nums) {
         Arrays.sort(nums);
         int i = 0;
@@ -29,9 +28,8 @@ public class JZ3 {
         return nums[i];
     }
 
-
     /**
-     * 时间复杂度和空间复杂度都为O(n)
+     * 哈希
      */
     public static int findRepeatNumber1(int[] nums) {
         Set<Integer> set = new HashSet<Integer>();

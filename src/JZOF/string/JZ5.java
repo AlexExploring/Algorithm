@@ -1,7 +1,7 @@
 package JZOF.string;
 
 /**
- *替换空格
+ *替 换空格
  */
 public class JZ5 {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class JZ5 {
     }
 
     /**
-     *StringBuffer 或者 StringBuilder
+     * StringBuffer(线程安全) 或者 StringBuilder(线程不安全)
      */
     public static String replaceSpace1(String s) {
         StringBuffer ans = new StringBuffer();
@@ -21,7 +21,7 @@ public class JZ5 {
     }
 
     /**
-     *效率最低，
+     *效率最低
      */
     public static String replaceSpace2(String s){
         return s.replaceAll(" ","%20");

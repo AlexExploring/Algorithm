@@ -1,11 +1,13 @@
 package DP.string;
 
 /**
- * 交错字符串
+ * 交错字符串  (和LC62类似)
  */
 public class LC97 {
 
     /**
+     * 题解链接：https://leetcode.cn/problems/interleaving-string/solution/lei-si-lu-jing-wen-ti-zhao-zhun-zhuang-tai-fang-ch/
+     *
      * 状态定义: boolean[][] dp ，dp[i][j] 代表 s1 前 i 个字符与 s2 前 j
      * 个字符拼接成 s3 的 i+j 字符，也就是存在目标路径能够到达 i ,j
      *

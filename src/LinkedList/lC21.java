@@ -17,7 +17,7 @@ public class lC21 {
             }
             tail = tail.next;
         }
-        tail.next = l1!=null?l1:l2;
+        tail.next = l1 != null ? l1 : l2;
         return head.next;
     }
 }

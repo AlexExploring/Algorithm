@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 课程顺序
+ * 课程表II
  *
  * 题目类型：拓扑排序
+ *
+ * 题解：https://leetcode-cn.com/problems/course-schedule-ii/solution/ke-cheng-biao-ii-by-leetcode-solution/
  */
 public class LC210 {
     // 存储有向图
@@ -26,15 +28,16 @@ public class LC210 {
         for (int i = 0; i < numCourses; ++i) {
             edges.add(new ArrayList<Integer>());
         }
+        result = new int[numCourses];
+        visited = new int[numCourses];
+        index = numCourses - 1;
+
         //已知：0 <= 已知课程编号 < numCourses;
         //如果prerequisites = [[1,0],[2,0],[3,1],[3,2]],numCourses = 4,那么edges中存储的将是
         //[[1,2],[3],[3]];  由 0 -> 1,0 -> 2,1 -> 3,2 -> 3;
         for (int[] prerequisite : prerequisites) {
             edges.get(prerequisite[1]).add(prerequisite[0]);
         }
-        visited = new int[numCourses];
-        result = new int[numCourses];
-        index = numCourses - 1;
 
         // 每次挑选一个「未搜索」的节点，并且图中没有环,开始进行深度优先搜索
         for (int i = 0; i < numCourses && valid; ++i) {
@@ -52,6 +55,9 @@ public class LC210 {
         return result;
     }
 
+    /**
+     * 使用dfs逆序生成拓扑排序
+     */
     public void dfs(int u) {
         // 将节点标记为「搜索中」
         visited[u] = 1;

@@ -7,6 +7,12 @@ import java.util.Arrays;
  */
 public class LC875 {
 
+    /**
+     * 实际上就是通过二分查找找到一最合适的k
+     *
+     * 狒狒每小时吃的香蕉是 <= piles[i]的，由于题目定义 1<=piles[i]<=10^9
+     * 所以二分查找的上界为 10^9
+     */
     public int minEatingSpeed(int[] piles, int h) {
         Arrays.sort(piles);
         int left = 1;
@@ -16,8 +22,10 @@ public class LC875 {
         while (left < right) {
             int mid = left + (right-left)/2;
             if (!possible(piles,h,mid)) {
+                //mid不满足，需要跳过
                 left = mid + 1;
             }else {
+                //mid可能就是最合适的，所以不能跳过
                 right = mid;
             }
         }

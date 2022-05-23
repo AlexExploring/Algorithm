@@ -10,6 +10,7 @@ import java.util.Set;
  * 给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度
  */
 public class LC128 {
+
     /**
      * 先排序，再判断
      */
@@ -20,9 +21,11 @@ public class LC128 {
         Arrays.sort(nums);
         int cur = 1,ans = 1;
         for (int i = 1; i < nums.length; i++) {
+            // 相同直接跳过
             if (nums[i] == nums[i-1]) {
                 continue;
-            }else if (nums[i]-1 == nums[i-1]) {
+                // 是否满足连续递增
+            }else if (nums[i-1] == nums[i]-1) {
                 cur++;
             }else {
                 ans = Math.max(cur,ans);

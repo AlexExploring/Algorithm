@@ -1,7 +1,7 @@
 package graphTheory.unionFind;
 
 /**
- *
+ * »ﬂ”‡¡¨Ω”
  */
 public class LC684 {
 
