@@ -16,6 +16,8 @@ public class LC3 {
     public int lengthOfLongestSubstring(String s) {
         Set<Character> set = new HashSet<>();
         int ans = 0,len = s.length();
+
+        //双重for循环枚举起始位置
         for (int i = 0; i < len; i++) {
             for (int j = i; j < len; j++) {
                 if (!set.contains(s.charAt(j))){
@@ -36,34 +38,36 @@ public class LC3 {
     public int lengthOfLongestSubstring1(String s) {
         // 哈希集合，记录每个字符是否出现过
         Set<Character> set = new HashSet<Character>();
-        int n = s.length();
+        int len = s.length();
+
         // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
         int rk = -1, ans = 0;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < len; ++i) {
             if (i != 0) {
                 // 左指针向右移动一格，移除一个字符
                 set.remove(s.charAt(i - 1));
             }
             // 判断下一个字符是否已经在set中
-            while (rk + 1 < n && !set.contains(s.charAt(rk + 1))) {
+            while (rk + 1 < len && !set.contains(s.charAt(rk + 1))) {
                 // 不断地移动右指针
                 set.add(s.charAt(++rk));
             }
             // 第 i 到 rk 个字符是一个极长的无重复字符子串
             ans = Math.max(ans, rk - i + 1);
         }
+
         return ans;
     }
 
-        /**
-         * 这种写法，省去了大量不必要的增删操作，从而节省了大量的时间
-         */
+    /**
+     * 这种写法，省去了大量不必要的增删操作，从而节省了大量的时间
+     */
     public int lengthOfLongestSubstring2(String s) {
         Map<Character, Integer> dic = new HashMap<>();
         int i = -1, res = 0;
         for(int j = 0; j < s.length(); j++) {
             if(dic.containsKey(s.charAt(j)))
-                i = Math.max(i, dic.get(s.charAt(j))); // 更新左指针 i，保证计算结果的时候，i是当前字符的最先下标
+                i = Math.max(i, dic.get(s.charAt(j))); // 更新左指针 i，保证计算结果的时候，i是当前字符的最大下标
             dic.put(s.charAt(j), j); // 哈希表记录
             res = Math.max(res, j - i); // 更新结果
         }

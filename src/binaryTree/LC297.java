@@ -15,15 +15,15 @@ class Codec {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        return reSerialize(root,"");
+        return serialize(root,"");
     }
 
-    public String reSerialize(TreeNode root,String str) {
+    public String serialize(TreeNode root, String str) {
         if (root == null) str += "null,";
         else {
             str += root.val + ",";
-            str = reSerialize(root.left,str);
-            str = reSerialize(root.right,str);
+            str = serialize(root.left,str);
+            str = serialize(root.right,str);
         }
         return str;
     }
@@ -32,10 +32,10 @@ class Codec {
     public TreeNode deserialize(String data) {
         String[] dataArray = data.split(",");
         List<String> dataList = new LinkedList<String>(Arrays.asList(dataArray));
-        return reDeserialize(dataList);
+        return deserialize(dataList);
     }
 
-    public TreeNode reDeserialize(List<String> dataList) {
+    public TreeNode deserialize(List<String> dataList) {
         if (dataList.get(0).equals("null")) {
             dataList.remove(0);
             return null;
@@ -43,8 +43,8 @@ class Codec {
 
         TreeNode curRoot = new TreeNode(Integer.valueOf(dataList.get(0)));
         dataList.remove(0);
-        curRoot.left = reDeserialize(dataList);
-        curRoot.right = reDeserialize(dataList);
+        curRoot.left = deserialize(dataList);
+        curRoot.right = deserialize(dataList);
 
         return curRoot;
     }

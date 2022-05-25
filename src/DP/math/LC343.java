@@ -1,7 +1,7 @@
 package DP.math;
 
 /**
- *  动态规划
+ * 整数拆分
  */
 public class LC343 {
 

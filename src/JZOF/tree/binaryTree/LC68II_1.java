@@ -60,3 +60,31 @@ public class LC68II_1 {
         }
     }
 }
+
+class Node {
+    public int val;
+
+    // 链接前驱
+    public Node left;
+    // 链接后继
+    public Node right;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val,Node _left,Node _right) {
+        val = _val;
+        left = _left;
+        right = _right;
+    }
+};
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}

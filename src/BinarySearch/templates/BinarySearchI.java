@@ -6,10 +6,11 @@ package BinarySearch.templates;
 public class BinarySearchI {
 
     public static void main(String[] args) {
-        int [] arr = {0,3,5,7,8,13,19,21};
-        System.out.println(new BinarySearchI().binarySearch(arr,5));
-        System.out.println(new BinarySearchI().binarySearch1(arr,8));
-        System.out.print(new BinarySearchI().binarySearch2(arr,8));
+        //int [] arr = {0,3,5,7,8,13,19,21};
+        int [] arr = {1,3,5,6};
+        System.out.println(new BinarySearchI().binarySearch(arr,7));
+        System.out.println(new BinarySearchI().binarySearch1(arr,7));
+        System.out.print(new BinarySearchI().binarySearch2(arr,7));
     }
 
     /**

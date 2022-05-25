@@ -18,7 +18,7 @@ public class Quick {
     /**
      * 写法一：选取中间节点为基准值
      */
-    public static void quickSort(int [] array, int left, int right)
+    public void quickSort(int [] array, int left, int right)
     {
         if (left >= right) return;
 
@@ -39,7 +39,7 @@ public class Quick {
     /**
      * 写法二：选取中间节点为基准值
      */
-    public static void quickSort1(int [] array, int left, int right) {
+    public void quickSort1(int [] array, int left, int right) {
         if (left >= right) return;
 
         int l = left,r = right,key = array[left + right >> 1];
@@ -57,9 +57,9 @@ public class Quick {
     /**
      * 写法三：选取每个区间的array[left]作为基准值
      *
-     * 效率很低
+     * 每次划分完成后，左边子数组的所有数字 <= 基准值;右边子数组的所有数字 >= 基准值
      */
-    public static void quickSort2(int[] array,int left,int right) {
+    public void quickSort2(int[] array,int left,int right) {
         if(left >= right) return;
 
         //选用array[left]为基准数,这里就是每个数组的第一个
@@ -73,7 +73,7 @@ public class Quick {
             swap(array,l,r);
         }
 
-        //这里的array[l]一定是小于key的，经过l、r交换后l处的值一定是小于key的(r先走)
+        //这里的array[l]一定是大于array[left](key)的，经过l、r交换后l处的值一定是小于array[left](key)的(r先走)
         array[left] = array[l];
         //将基准数移动到它应该在的位置
         array[l] = key;
@@ -83,7 +83,7 @@ public class Quick {
     }
 
     /**
-     * 写法四
+     * 写法四：引入随机化防止快速排退化
      */
     public void quickSort4(int[] nums, int l, int r) {
         if (l < r) {
@@ -96,9 +96,6 @@ public class Quick {
 
     private Random random = new Random();
 
-    /**
-     * 引入随机化防止快速排退化
-     */
     public int randomPartition(int[] nums, int l, int r) {
         // 随机选一个作为我们的主元
         int i = random.nextInt(r - l + 1) + l;
@@ -123,7 +120,7 @@ public class Quick {
         return i + 1;
     }
 
-    public static void swap(int [] array,int i, int j) {
+    public void swap(int [] array,int i, int j) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
