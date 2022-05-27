@@ -1,7 +1,6 @@
-package JZOF;
+package slidingWindow;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,24 +42,30 @@ public class JZ57II {
     }
 
     /**
-     * 双指针
+     * 双指针,滑动窗口
      */
     public int[][] findContinuousSequence1(int target) {
-        List<int[]> res=new ArrayList();
-        int i=1;
-        while(target>0){
-            target=target-i++;
-            if(target>0&&target%i==0){
-                int[] temp=new int[i];
-                for(int j=0;j<i;j++) temp[j]=target/i+j;
-                res.add(temp);
+        List<int[]> res = new ArrayList<>();
+        int l = 1, r = 2, t = 3;
+
+        while(l < r) {
+            if(t == target) {
+                int[] ans = new int[r - l + 1];
+                for(int k = l; k <= r; k++)
+                    ans[k - l] = k;
+                res.add(ans);
+            }
+            if(t >= target) {
+                t -= l;
+                //将l移除窗口
+                l++;
+            } else {
+                //将r加入窗口
+                r++;
+                t += r;
             }
         }
 
-        int[][] fin = new int[res.size()][];
-        for(int k=fin.length-1;k>=0;k--){
-            fin[fin.length-k-1]=res.get(k);
-        }
-        return fin;
+        return res.toArray(new int[0][]);
     }
 }

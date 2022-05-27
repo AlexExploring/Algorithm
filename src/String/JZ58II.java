@@ -1,16 +1,12 @@
-package JZOF;
+package String;
 
-import java.util.Locale;
-import java.util.Scanner;
-
-public class LC58II {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        reverseLeftWords("abcdefg",2);
-    }
+/**
+ * ×óÐý×ª×Ö·û´®
+ */
+public class JZ58II {
 
     public static String reverseLeftWords(String s, int n) {
-        if (n>=s.length()) return s;
+        if (n >= s.length()) return s;
 
         StringBuffer res = new StringBuffer();
         for (int i = n; i < s.length(); i++) res.append(s.charAt(i));

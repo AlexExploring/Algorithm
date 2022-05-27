@@ -1,24 +1,21 @@
-package JZOF.queue;
+package slidingWindow;
 
 import java.util.*;
 
 /**
  *滑动窗口的最大值
  */
-public class JZ59 {
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(maxSlidingWindow2(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
-    }
+public class LC239 {
 
     /**
-     *对于每个滑动窗口，我们可以使用 O(k)的时间遍历其中的每一个元素，
-     * 找出其中的最大值。对于长度为 n 的数组 nums 而言，
-     * 窗口的数量为 n-k+1，因此该算法的时间复杂度为 O((n-k+1)k)=O(nk)，
-     * 会超出时间限制，因此我们需要进行一些优化。
+     * 如果直接使用双重for循环的话对于每个滑动窗口，我们可以使用 O(k)
+     * 的时间遍历其中的每一个元素，找出其中的最大值。对于长度为 n 的数组
+     * nums 而言，窗口的数量为 n-k+1，因此该算法的时间复杂度为
+     * O((n-k+1)k)=O(nk)，会超出时间限制，因此我们需要进行一些优化。
      */
 
     /**
-     *使用优先队列
+     * 使用优先队列
      */
     public static int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
@@ -49,7 +46,7 @@ public class JZ59 {
     }
 
     /**
-     *使用单调队列
+     * 使用单调队列
      *
      * 在这个队列中，里面存储的是下标，这些下标按照从小到大的顺序被存储，
      * 并且他们在数组nums中对应的值是严格单调递减的。
