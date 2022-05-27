@@ -6,17 +6,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- *超时
+ * 超时
  * 使用回溯  暴力求解
  */
 public class JZ60 {
+
     public static void main(String[] args) {
         double [] res = dicesProbability(3);
         System.out.println(Arrays.toString(res));
     }
 
     /**
-     *超时
+     * 回溯法
+     *
+     * 时间复杂度: O(6^n),
      */
     public static double[] dicesProbability(int n) {
         double all =  Math.pow(6,n);
@@ -37,16 +40,18 @@ public class JZ60 {
     static int total = 0;
     static DecimalFormat df = new DecimalFormat("0.00000");
 
-    public static void back_Track(int n,int n_now){
-        if (n_now==n) {
-            if (map.containsKey(total)){
-                map.put(total,map.get(total)+1);
-            }else map.put(total,1);
+    /**
+     * 总共右n枚骰子，每一枚骰子右 1~6 六种情况
+     */
+    public static void back_Track(int n,int cur){
+        if (cur == n) {
+            map.put(total,map.getOrDefault(total,0)+1);
             return;
         }
+
         for (int i = 1; i <= 6; i++) {
             total+=i;
-            back_Track(n,n_now+1);
+            back_Track(n,cur+1);
             total-=i;
         }
     }

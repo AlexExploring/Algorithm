@@ -1,8 +1,6 @@
 package design;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 队列的最大值
@@ -61,7 +59,7 @@ class MaxQueue1 {
     }
 
     /**
-     *由于d是单调递减的，要要求最大值，只需要返回d.peekFirst()
+     * 由于d是单调递减的，要要求最大值，只需要返回d.peekFirst()
      */
     public int max_value() {
         if (d.isEmpty()) {
@@ -71,6 +69,7 @@ class MaxQueue1 {
     }
 
     public void push_back(int value) {
+        //维护d使得，最左端的数一定要是加入value之后，q中的最大值
         while (!d.isEmpty() && d.peekLast() < value) {
             d.pollLast();
         }
