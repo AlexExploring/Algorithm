@@ -1,4 +1,4 @@
-package JZOF.queue;
+package design;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -36,8 +36,8 @@ class CQueue {
 
     public int deleteHead() {
         if(!B.isEmpty()) return B.pop();
-        if(A.isEmpty()) return -1;
 
+        if(A.isEmpty()) return -1;
         //将A中的数据填入B中
         //如A[7,-1,3,4]
         //则B[4,3,-1,7]

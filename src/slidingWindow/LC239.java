@@ -18,7 +18,9 @@ public class LC239 {
      * 使用优先队列
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
+        int len = nums.length;
+        if (len == 0) return new int[0];
+
         //传入一个内部比较器
         PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
             public int compare(int[] pair1, int[] pair2) {
@@ -32,16 +34,16 @@ public class LC239 {
         for (int i = 0; i < k; ++i) {
             pq.offer(new int[]{nums[i], i});
         }
-        //用来存放结果，一共有(n-k+1)个窗口
-        int[] ans = new int[n - k + 1];
+        //用来存放结果，一共有(len-k+1)个窗口
+        int[] ans = new int[len - k + 1];
         //取出第一个值
         ans[0] = pq.peek()[0];
 
         // 我们只需要判断 优先队列中对应的最大值的下标是否在 这个窗口中，如果在，则这个窗口中的最大值
         // 就是优先队列的顶点对应的值，
-        for (int i = k; i < n; ++i) {
+        for (int i = k; i < len; ++i) {
             pq.offer(new int[]{nums[i], i});
-            //最大值对应的下标不在窗口中，则将当前的最大值从优先队列中删除
+            //最大值对应的下标不在窗口中，则将当前的最大值从优先队列中删除(不用急着删除)
             while (pq.peek()[1] <= i - k) {
                 pq.poll();
             }
@@ -52,45 +54,41 @@ public class LC239 {
         return ans;
     }
 
-    public static void main(String[] args) {
-        int [] nums = new int[]{1,3,-1,-3,5,3,6,7};
-        int k = 3;
-        System.out.println(new LC239().maxSlidingWindow1(nums,3));
-    }
-
     /**
      * 使用单调队列
      *
      * 在这个队列中，里面存储的是下标，这些下标按照从小到大的顺序被存储，
-     * 并且他们在数组nums中对应的值是严格单调递减的。
+     * 并且他们在数组nums中对应的值是严格单调递减的。（会从队列的左端得到窗口中的最大值）
      */
     public int[] maxSlidingWindow1(int[] nums, int k) {
-        if (nums.length==0) return new int[0];
-
         int len = nums.length;
-        Deque<Integer> deque = new LinkedList<Integer>();
+        if (len == 0) return new int[0];
 
+        Deque<Integer> queue = new LinkedList<Integer>();
         //先将前k个数放入队列
         for (int i = 0; i < k; ++i) {
-            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
-                deque.pollLast();
+            while (!queue.isEmpty() && nums[i] >= nums[queue.peekLast()]) {
+                queue.pollLast();
             }
-            deque.offerLast(i);
+            queue.offerLast(i);
         }
 
         int[] ans = new int[len - k + 1];
         //队首存储的下标就是对应窗口中的最大值对应的下标
-        ans[0] = nums[deque.peekFirst()];
+        ans[0] = nums[queue.peekFirst()];
 
         for (int i = k; i < len; ++i) {
-            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
-                deque.pollLast();
+            while (!queue.isEmpty() && nums[i] >= nums[queue.peekLast()]) {
+                queue.pollLast();
             }
-            deque.offerLast(i);//添加新元素
-            while (deque.peekFirst() <= i - k) {//如果队首不在窗口内，则将队首弹出
-                deque.pollFirst();
+            //添加新元素
+            queue.offerLast(i);
+            //如果队首不在窗口内，则将队首弹出
+            while (queue.peekFirst() <= i - k) {
+                queue.pollFirst();
             }
-            ans[i - k + 1] = nums[deque.peekFirst()];
+            //此时nums[queue.peekFirst()]一定是窗口中的最大值
+            ans[i - k + 1] = nums[queue.peekFirst()];
         }
 
         return ans;
