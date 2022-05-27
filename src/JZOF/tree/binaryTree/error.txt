@@ -1,4 +1,0 @@
-java.lang.NullPointerException
-  at line 45, Solution.treeToDoublyList
-  at line 153, __DriverSolution__.__helper__
-  at line 181, __Driver__.main

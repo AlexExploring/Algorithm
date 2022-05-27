@@ -1,7 +1,7 @@
 package sort;
 
 /**
- *数组中的逆序对
+ * 数组中的逆序对
  */
 public class JZ51 {
     public static void main(String[] args) {
@@ -40,7 +40,7 @@ public class JZ51 {
      */
     public void mergeSort(int[] arr,int left,int right){
         //如果左边索引小于右边就可以一直分，l=r时，就是分到只剩一个数了
-        if(left<right){
+        if(left < right){
             int mid = (right - left)/2 + left;
             //向左递归分解
             mergeSort(arr,left,mid);
@@ -67,17 +67,18 @@ public class JZ51 {
         int t = 0;//temp数组的当前索引
 
         //比较左右两部分的元素，哪个小，把那个元素填入temp中
-        while (i<=mid && j<=right){
+        while (i <= mid && j <= right){
             if(arr[i] <= arr[j]) temp[t++] = arr[i++];
             else {
+                //为什么是 mid-i-1,见图JZ51.png,JZ51I.png
                 count += (mid - i + 1);
                 temp[t++] = arr[j++];
             }
         }
 
         //以下两个while只有一个会执行
-        while (i<=mid) temp[t++] = arr[i++];
-        while (j<=right) temp[t++] = arr[j++];
+        while (i <= mid) temp[t++] = arr[i++];
+        while (j <= right) temp[t++] = arr[j++];
 
         //将temp数组拷贝到arr数组，并不是每次都拷贝所有
         for (t = 0; t < temp.length; t++) {

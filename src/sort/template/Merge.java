@@ -19,7 +19,7 @@ public class Merge {
      */
     public void mergeSort(int[] arr,int left,int right){
         //如果左边索引小于右边就可以一直分，l=r时，就是分到只剩一个数了
-        if(left<right){
+        if(left < right){
             int mid = (right - left)/2 + left;
             //向左递归分解
             mergeSort(arr,left,mid);
@@ -46,7 +46,7 @@ public class Merge {
         int t = 0;//temp数组的当前索引
 
         //比较左右两部分的元素，哪个小，把那个元素填入temp中
-        while (i<=mid && j<=right){
+        while (i <= mid && j <= right){
             if(arr[i] <= arr[j]) temp[t++] = arr[i++];
             else temp[t++] = arr[j++];
         }

@@ -1,42 +1,34 @@
 package BinarySearch;
 
-
-import java.util.Arrays;
-
 /**
- *在排序数组中查找元素的第一个和最后一个位置
+ * 在排序数组中查找目标 元素的第一个和最后一个位置（左右边界）
+ *
+ * 和JZ53I相同，只是返回值不一样
  */
 public class LC34 {
-    public static void main(String[] args) {
-        int [] nums = {5,7,7,8,8,10};
-        System.out.println(Arrays.toString(searchRange(nums,8)));
+
+    public int[] searchRange(int[] nums, int target) {
+        int left = helper(nums,target-1);
+        int right = helper(nums,target)-1;
+        if (left <= right && right < nums.length && nums[left] == target && nums[right] == target) {
+            return new int[]{left,right};
+        }
+        return new int[]{-1,-1};
     }
 
-    public static int[] searchRange(int[] nums, int target) {
-        int l = 0,r = nums.length-1,begin = -1,end = -1;
-        while (l<=r){
-            int mid = l+(r-l)/2;
-            if (target==nums[mid]){
-                begin = end = mid;break;
+    /**
+     * 查找nums中第一个大于目标值的数的下标
+     */
+    public int helper(int [] nums,int target) {
+        int l = 0,r = nums.length-1;
+        while (l <= r){
+            int mid = l + (r - l)/2;
+            if (nums[mid] <= target){
+                l = mid + 1;
+            }else {
+                r = mid - 1;
             }
-
-            if (target<nums[mid])
-                r = mid-1;
-            else l = mid+1;
         }
-
-        if (begin==-1){
-            int [] ans = {-1,-1}; return ans;
-        }else {
-            while (true)
-                if ((begin-1>=0)&&nums[begin-1]==target)
-                    begin--;
-                else break;
-            while (true)
-                if ((end+1<=nums.length-1)&&nums[end+1]==target)
-                    end++;
-                else break;
-            int [] ans = {begin,end};return ans;
-        }
+        return l;
     }
 }

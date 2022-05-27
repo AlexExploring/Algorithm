@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 题目：两数之和 (数组是无序的)
+ * 题目：两数之和 (数组是无序的，有重复数字)
  * 类似题目LC167：两数之和II
  */
 public class LC1 {

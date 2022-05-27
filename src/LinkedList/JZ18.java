@@ -16,7 +16,8 @@ public class JZ18 {
      * Ë«Ö¸Õë
      */
     public ListNode deleteNode1(ListNode head, int val) {
-        if (head==null) return null;
+        if (head == null) return null;
+
         if(head.val == val) return head.next;
 
         ListNode pre = head, cur = head.next;
