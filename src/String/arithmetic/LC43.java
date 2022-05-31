@@ -1,10 +1,18 @@
-package tx50;
+package String.arithmetic;
 
 /**
  * 字符串相乘
  * 相关题目：LC415
  */
 public class LC43 {
+
+    /**
+     * 方法一：做加法
+     *
+     * 1. 如果 num1和num2之一是 0，则直接将 0 作为结果返回即可。
+     * 2. 如果 num1和num2都不是 0，则可以通过模拟「竖式乘法」的方法计算乘积。
+     * 需要注意的是，num2除了最低位以外，其余的每一位的运算结果都需要补 0。
+     */
     public String multiply(String num1, String num2) {
         if (num1.equals("0") || num2.equals("0")) return "0";
         String res = "0";
@@ -28,6 +36,7 @@ public class LC43 {
                 temp.append(cur);
                 carry = (n1*n2+carry)/10;
             }
+
             res = addStrings(res,temp.reverse().toString());
         }
         return res;
@@ -37,10 +46,10 @@ public class LC43 {
         StringBuilder res = new StringBuilder();
         int carry = 0,i = num1.length()-1,j = num2.length()-1;
         while (i >= 0 || j >= 0 || carry != 0) {
-            if (i >= 0) carry+=num1.charAt(i--)-'0';
-            if (j >= 0) carry+=num2.charAt(j--)-'0';
+            if (i >= 0) carry += num1.charAt(i--) - '0';
+            if (j >= 0) carry += num2.charAt(j--) - '0';
             res.append(carry%10);
-            carry/=10;
+            carry /= 10;
         }
         return res.reverse().toString();
     }

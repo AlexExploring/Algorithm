@@ -1,14 +1,9 @@
 package DP.buyStock;
 
-/**
- * @author zhxspacex
- * @date 2020/12/16 21:41
- */
-
 import java.util.Scanner;
 
 /**
- *买卖股票的最佳时机II
+ *  买卖股票的最佳时机II
  */
 public class LC122 {
     public static void main(String[] args) {

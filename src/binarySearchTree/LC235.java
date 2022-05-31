@@ -1,12 +1,18 @@
-package tx50;
+package binarySearchTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 二叉搜索树的最近公共祖先
+ *
+ * 和LC236类似
  */
 public class LC235 {
+
+    /**
+     * 结合二叉搜索树的特性
+     */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         TreeNode ancestor = root;
         while (true) {
@@ -48,11 +54,4 @@ public class LC235 {
         path.add(node);
         return path;
     }
-}
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
 }

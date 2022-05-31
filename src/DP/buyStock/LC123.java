@@ -3,11 +3,6 @@ package DP.buyStock;
 import java.util.Scanner;
 
 /**
- * @author zhxspacex
- * @date 2020/12/16 22:40
- */
-
-/**
  *买卖股票的最佳时机III
  */
 public class LC123 {
