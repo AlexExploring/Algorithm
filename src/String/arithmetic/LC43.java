@@ -5,26 +5,32 @@ package String.arithmetic;
  * 相关题目：LC415
  */
 public class LC43 {
+    public static void main(String[] args) {
+        new LC43().multiply("1234","567");
+    }
 
     /**
      * 方法一：做加法
      *
      * 1. 如果 num1和num2之一是 0，则直接将 0 作为结果返回即可。
      * 2. 如果 num1和num2都不是 0，则可以通过模拟「竖式乘法」的方法计算乘积。
-     * 需要注意的是，num2除了最低位以外，其余的每一位的运算结果都需要补 0。
+     * 需要注意的是，num2除了最低位以外，其余的每一位的运算结果都需要补 0。见
+     * 图LC43.png
      */
     public String multiply(String num1, String num2) {
         if (num1.equals("0") || num2.equals("0")) return "0";
+
         String res = "0";
 
         //从num2的最后一位开始逐位和num1相乘
-        for (int i = num2.length()-1; i >= 0 ; i--) {
+        for (int i = num2.length() - 1; i >= 0 ; i--) {
             //保存临时结果
             StringBuilder temp = new StringBuilder();
             //补0
             for (int j = 0; j < num2.length() - 1 - i; j++) {
                 temp.append("0");
             }
+            System.out.println("temp:"+temp);
             //当前从num2中取得的数
             int n2 = num2.charAt(i)-'0';
             //进位
@@ -54,9 +60,14 @@ public class LC43 {
         return res.reverse().toString();
     }
 
+    /**
+     * 方法二：优化竖式
+     */
     public String multiply1(String num1, String num2) {
         if (num1.equals("0") || num2.equals("0")) return "0";
+
         int [] res = new int[num1.length()+num2.length()];
+
         for (int i = num1.length()-1; i >= 0 ; i--) {
             int n1 = num1.charAt(i)-'0';
             for (int j = num2.length()-1; j >= 0 ; j--) {
