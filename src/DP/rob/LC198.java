@@ -1,8 +1,8 @@
 package DP.rob;
 
 /**
- *打家劫舍
- *相关问题 LC213 打家劫舍2
+ *打家劫舍I
+ *相关问题 LC213 打家劫舍II
  */
 public class LC198 {
 

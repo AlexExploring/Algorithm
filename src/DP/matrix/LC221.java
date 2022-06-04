@@ -3,23 +3,11 @@ package DP.matrix;
 import java.io.*;
 import java.util.Scanner;
 
-//最大正方形
+/**
+ * 最大正方形
+ * 相似题目：LC1277
+ */
 public class LC221 {
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner scan = new Scanner(new File("C:\\Users\\ZhangHaixia\\" +
-                "IdeaProjects\\Suanfa\\src\\dongtaiguihua\\LC_12_20_0_jz\\LC221SJ"));
-
-        char [][] a = new char[4][5];
-        int i = 0;
-        while (scan.hasNextLine()) {
-            a[i] = scan.nextLine().toCharArray();
-            i++;
-        }
-
-        System.out.println(maximalSquare(a));
-        System.out.println(maximalSquare1(a));
-        System.out.println(maximalSquare2(a));
-    }
 
     /**
      *暴力循环

@@ -3,7 +3,6 @@ package Top100;
 /**
  *  整数反转
  *
- *
  *  从ans * 10 + pop < MIN_VALUE这个溢出条件来看
  * 当出现 ans < MIN_VALUE / 10 且 还有pop需要添加 时，则一定溢出
  * 当出现 ans == MIN_VALUE / 10 且 pop < -8 时，则一定溢出，8是-2^31的个位数

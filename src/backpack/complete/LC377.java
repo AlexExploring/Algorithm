@@ -1,8 +1,7 @@
 package backpack.complete;
 
 /**
- * 排列的数目
- * 和LC518零钱兑换II类似(该题不需要考虑顺序)
+ * 组合总和IV (和LC518零钱兑换II类似(该题不需要考虑顺序))
  *
  * 题解链接：https://leetcode.cn/problems/D0F0SV/solution/tong-guan-jian-2-shuang-bai-bei-bao-dp-b-f33v/
  */

@@ -29,8 +29,9 @@ public class LC494 {
         }
     }
 
+
     /**
-     * 方法2：转换成0，1背包
+     * 方法2：每个数只能被选择一次，转换成0，1背包
      * 因为nums中的数都大于等于0，记添加- 号的元素之和为 neg，则其余添加 +
      * 的元素之和为 sum-neg；得到表达式(sum-neg)-neg=sum-2*neg=target，
      * 即 neg = (sum - target)/2。
@@ -52,10 +53,11 @@ public class LC494 {
             return 0;
         }
 
-        int n = nums.length, neg = diff / 2;
-        int[][] dp = new int[n + 1][neg + 1];
+        int len = nums.length, neg = diff / 2;
+        int[][] dp = new int[len + 1][neg + 1];
         dp[0][0] = 1;
-        for (int i = 1; i <= n; i++) {
+
+        for (int i = 1; i <= len; i++) {
             int num = nums[i - 1];
             for (int j = 0; j <= neg; j++) {
                 //不选num
@@ -67,7 +69,7 @@ public class LC494 {
             }
         }
 
-        return dp[n][neg];
+        return dp[len][neg];
     }
 
     /**

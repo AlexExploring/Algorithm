@@ -62,6 +62,8 @@ public class LC43 {
 
     /**
      * 方法二：优化竖式
+     * nums[i],nums[j]两个数相乘可能产生一个一位数或者一个两位数，其中一位位于 res[i+j],
+     * 另一位位于res[i+j+1]
      */
     public String multiply1(String num1, String num2) {
         if (num1.equals("0") || num2.equals("0")) return "0";
@@ -69,10 +71,10 @@ public class LC43 {
         int [] res = new int[num1.length()+num2.length()];
 
         for (int i = num1.length()-1; i >= 0 ; i--) {
-            int n1 = num1.charAt(i)-'0';
+            int n1 = num1.charAt(i) - '0';
             for (int j = num2.length()-1; j >= 0 ; j--) {
-                int n2 = num2.charAt(j)-'0';
-                //res[i+j+1 考虑之前的计算产生的进位
+                int n2 = num2.charAt(j) - '0';
+                //res[i+j+1] 考虑之前的计算产生的进位
                 int sum = (res[i+j+1]+n1*n2);
                 res[i+j+1] = sum%10;
                 res[i+j] += sum/10;

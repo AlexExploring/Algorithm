@@ -1,4 +1,4 @@
-package tx50;
+package String;
 
 /**
  * ·´×ª×Ö·û´®

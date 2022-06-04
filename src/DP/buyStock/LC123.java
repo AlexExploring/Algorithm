@@ -3,7 +3,7 @@ package DP.buyStock;
 import java.util.Scanner;
 
 /**
- *买卖股票的最佳时机III
+ * 买卖股票的最佳时机III
  */
 public class LC123 {
     public static void main(String[] args) {

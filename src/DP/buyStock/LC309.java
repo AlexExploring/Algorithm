@@ -1,13 +1,17 @@
-package Top100;
+package DP.buyStock;
 
 /**
  * 最佳买卖股票时机含冷冻期
+ *
+ * 注意：可多次买卖，卖出股票后无法在第二天买入（冷冻期）
  */
 public class LC309 {
-    public int maxProfit(int[] prices) {
-        if (prices.length == 0) return 0;
 
+    public int maxProfit(int[] prices) {
         int len = prices.length;
+
+        if (len == 0) return 0;
+
         int [][] f = new int[len][3];
         f[0][0] = -prices[0];
 

@@ -1,7 +1,6 @@
 package backpack.complete;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * 零钱兑换 相关题目 LC518 零钱兑换II
@@ -18,6 +17,7 @@ public class LC322 {
         int [] dp = new int[amount + 1];
         //必须要填充
         Arrays.fill(dp, max);
+        //组成金额为0，需要0个硬币
         dp[0] = 0;
         for (int i = 1; i <= amount; i++) {
             for (int j = 0; j < a.length; j++) {

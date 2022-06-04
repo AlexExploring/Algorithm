@@ -1,7 +1,7 @@
 package DP.rob;
 
 /**
- * 打家劫舍2
+ * 打家劫舍II
  * 相关问题 LC198 打家劫舍
  */
 public class LC213 {

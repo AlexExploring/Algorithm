@@ -4,7 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
- * 后缀表达式
+ * 逆波兰表达式(也叫后缀表达式)求值
  */
 public class LC150 {
 

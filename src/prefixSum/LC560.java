@@ -1,27 +1,14 @@
-package hash;
+package prefixSum;
 
 import java.util.HashMap;
 
 /**
  * 和为k的子数组
- */
-
-/**
- * 相似的题目
  *
- * 三数之和
-
- * 四数之和
-
- * 两数之和 II - 输入有序数组
-
- * 两数之和 III - 数据结构设计
-
- * 和为 K 的子数组
-
- * 两数之和 IV - 输入 BST
-
- * 小于 K 的两数之和
+ * 数据范围：
+ * 1 <= nums.length <= 2 * 104
+ * -1000 <= nums[i] <= 1000
+ * -107 <= k <= 107
  */
 public class LC560 {
 
@@ -67,11 +54,15 @@ public class LC560 {
         return count;
     }
 
-
     /**
      * 前缀和+哈希表优化
      *
      * map中，键是前缀和，值是对应前缀和出现的次数
+     *
+     * 「[i..j] 这个子数组和为 k 」这个条件我们可以转化为:pre[j]-pre[i-1]==k
+     * 简单移项可得符合条件的下标i满足 pre[i-1] == pre[j]-k.
+     * 所以我们考虑以 j 结尾的和为 k 的连续子数组个数时只要统计有多少个前缀和为
+     * pre[j]-k 的 pre[i] 即可。
      */
     public int subarraySum2(int[] nums, int k) {
         int count = 0, pre = 0;

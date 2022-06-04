@@ -12,7 +12,10 @@ import java.util.List;
 public class LC438 {
 
     /**
-     * 滑动窗口
+     * 滑动窗口，只需要保证窗口内各个字符的数量相同，则证明是一个字母异位词
+     * 窗口不断右移，
+     *
+     * ans中存储的是每个字母异位词的起始下标
      */
     public List<Integer> findAnagrams(String s, String p) {
         int sLen = s.length(), pLen = p.length();
@@ -24,6 +27,7 @@ public class LC438 {
         List<Integer> ans = new ArrayList<Integer>();
         int[] sCount = new int[26];
         int[] pCount = new int[26];
+        //初始化窗口
         for (int i = 0; i < pLen; ++i) {
             ++sCount[s.charAt(i) - 'a'];
             ++pCount[p.charAt(i) - 'a'];
@@ -34,25 +38,21 @@ public class LC438 {
         }
 
         for (int i = pLen; i < sLen; ++i) {
+            //移除窗口最左边的元素
             --sCount[s.charAt(i-pLen) - 'a'];
+            //向窗口中添加当前元素
             ++sCount[s.charAt(i) - 'a'];
             if (Arrays.equals(sCount, pCount)) {
                 ans.add(i-pLen+1);
             }
         }
 
-        //或者
-        //for (int i = 0; i < sLen - pLen; ++i) {
-        //    --sCount[s.charAt(i) - 'a'];
-        //    ++sCount[s.charAt(i+pLen) - 'a'];
-        //    if (Arrays.equals(sCount, pCount)) {
-        //        ans.add(i+1);
-        //    }
-        //}
-
         return ans;
     }
 
+    /**
+     * 滑动窗口优化：上面方法中，每次对两个字符数组进行比较，很耗时间
+     */
     public List<Integer> findAnagrams1(String s, String p) {
         int sLen = s.length(), pLen = p.length();
 
@@ -67,6 +67,7 @@ public class LC438 {
             --count[p.charAt(i) - 'a'];
         }
 
+        //用一个diff来记录窗口中字符数量不同的个数
         int diff = 0;
         for (int j = 0; j < 26; ++j) {
             //窗口中字母 count[j] 的数量不同
@@ -83,12 +84,14 @@ public class LC438 {
             int x = s.charAt(i)-'a',y = s.charAt(i-pLen)-'a';
 
             if (x != y) {
+                //向窗口右侧添加元素
                 // 修改之前若有x处的字符相等，则diff+1
                 if (count[x] == 0) diff++;
                 count[x]++;
                 // 修改之后若有x处的字符相等，则diff-1
                 if (count[x] == 0) diff--;
 
+                //移除窗口最左边的元素
                 if (count[y] == 0) diff++;
                 count[y]--;
                 if (count[y] == 0) diff--;

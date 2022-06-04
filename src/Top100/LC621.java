@@ -12,14 +12,16 @@ public class LC621 {
         int [] temp = new int[26];
         int countMaxTask = 0;
         int maxTask = 0;
+
+        //拿到任务数量最多的任务的数量
         for (char c : tasks) {
-            temp[c-'A']++;
+            temp[c - 'A']++;
             maxTask = Math.max(temp[c-'A'],maxTask);
         }
 
-        // 统计每一列，在最后一行是否有任务
+        // 统计每一列，在最后一行是否有任务，借此统计最后一行的任务数量
         for (int i = 0; i < 26; i++) {
-             if (temp[i]==maxTask){
+             if (temp[i] == maxTask){
                  countMaxTask++;
              }
         }

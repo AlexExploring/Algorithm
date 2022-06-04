@@ -1,5 +1,8 @@
-package tx50;
+package String;
 
+/**
+ * 反转字符串中的单词III
+ */
 public class LC557 {
 
     /**
@@ -26,29 +29,5 @@ public class LC557 {
         }
 
         return ans.toString().trim();
-    }
-
-    /**
-     *
-     */
-    public String reverseWords1(String s) {
-        StringBuffer ret = new StringBuffer();
-        int length = s.length();
-        int i = 0;
-        while (i < length) {
-            int start = i;
-            while (i < length && s.charAt(i) != ' ') {
-                i++;
-            }
-            for (int p = start; p < i; p++) {
-                ret.append(s.charAt(start + i - 1 - p));
-            }
-            //去除空格
-            while (i < length && s.charAt(i) == ' ') {
-                i++;
-                ret.append(' ');
-            }
-        }
-        return ret.toString();
     }
 }

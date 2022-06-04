@@ -112,26 +112,25 @@ class ZZZH {
         return new String(ans);
     }
 
-    public static boolean isOperator(char c){
+    public static boolean isOperator(char c) {
         if (c == '+'||c == '-' || c == '*' || c == '/' || c == '(' ||c == ')')
             return true;
         return false;
     }
 
-    public static int priority(char a,char b)
-    {
-        if(a=='+'||a=='-')
+    public static int priority(char a,char b) {
+        if(a == '+' || a == '-')
         {
-            if(b=='+'||b=='-')
+            if(b == '+' || b == '-')
                 return 0;
-            if(b=='*'||b=='/')
+            if(b == '*' || b == '/')
                 return -1;
         }
-        if(a=='*'||a=='/')
+        if(a == '*' || a == '/')
         {
-            if(b=='+'||b=='-')
+            if(b == '+' || b == '-')
                 return 1;
-            if(b=='*'||b=='/')
+            if(b == '*' || b == '/')
                 return 0;
         }
         return -1;
