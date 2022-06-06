@@ -8,7 +8,9 @@ import java.util.List;
  * 二叉树的序列化与反序列化
  */
 public class LC297 {
-
+    public static void main(String[] args) {
+        new Codec().deserialize("1,2,null,null,3,4,null,null,5,null,null,");
+    }
 }
 
 class Codec {
@@ -19,12 +21,14 @@ class Codec {
     }
 
     public String serialize(TreeNode root, String str) {
-        if (root == null) str += "null,";
-        else {
+        if (root == null) {
+            str += "null,";
+        } else {
             str += root.val + ",";
             str = serialize(root.left,str);
             str = serialize(root.right,str);
         }
+
         return str;
     }
 
@@ -36,17 +40,21 @@ class Codec {
     }
 
     public TreeNode deserialize(List<String> dataList) {
-        if (dataList.get(0).equals("null")) {
+        if (dataList.size() > 0) {
+            if (dataList.get(0).equals("null")) {
+                dataList.remove(0);
+                return null;
+            }
+
+            TreeNode curRoot = new TreeNode(Integer.valueOf(dataList.get(0)));
             dataList.remove(0);
-            return null;
+            curRoot.left = deserialize(dataList);
+            curRoot.right = deserialize(dataList);
+
+            return curRoot;
         }
 
-        TreeNode curRoot = new TreeNode(Integer.valueOf(dataList.get(0)));
-        dataList.remove(0);
-        curRoot.left = deserialize(dataList);
-        curRoot.right = deserialize(dataList);
-
-        return curRoot;
+        return null;
     }
 }
 

@@ -8,7 +8,7 @@ package DP.subsequence;
 import java.util.Scanner;
 
 /**
- *递增的三元子序列
+ * 递增的三元子序列
  */
 public class LC334 {
     public static void main(String[] args) {

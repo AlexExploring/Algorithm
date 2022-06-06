@@ -3,7 +3,7 @@ package slidingWindow;
 import java.util.*;
 
 /**
- *滑动窗口的最大值
+ * 滑动窗口的最大值
  */
 public class LC239 {
 
@@ -43,7 +43,7 @@ public class LC239 {
         // 就是优先队列的顶点对应的值，
         for (int i = k; i < len; ++i) {
             pq.offer(new int[]{nums[i], i});
-            //最大值对应的下标不在窗口中，则将当前的最大值从优先队列中删除(不用急着删除)
+            //最大值对应的下标不在窗口中，则将当前的最大值从优先队列中删除
             while (pq.peek()[1] <= i - k) {
                 pq.poll();
             }

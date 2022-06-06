@@ -20,6 +20,7 @@ public class LC240 {
 
     public int search(int[] nums, int target) {
         int low = 0, high = nums.length - 1;
+
         while (low <= high) {
             int mid = (high - low) / 2 + low;
             int num = nums[mid];
@@ -31,6 +32,7 @@ public class LC240 {
                 low = mid + 1;
             }
         }
+
         return -1;
     }
 
@@ -44,9 +46,8 @@ public class LC240 {
             return false;
         }
 
-        int row = 0;
-        //一定要从最右边的一列开始
-        int column = matrix[0].length - 1;
+        int row = 0,column = matrix[0].length - 1;
+
         while (row < matrix.length && column >= 0) {
             if (matrix[row][column] == target) {
                 return true;
@@ -58,19 +59,6 @@ public class LC240 {
             }
         }
 
-        return false;
-    }
-
-    /**
-     * 结合改二维数组的特点，从右上角开始遍历,和遍历一颗二叉搜索树一样 (和searchMatrix1的解法区别不大)
-     */
-    public boolean searchMatrix2(int[][] matrix, int target) {
-        int i = matrix.length - 1, j = 0;
-        while(i >= 0 && j < matrix[0].length) {
-            if(matrix[i][j] > target) i--;
-            else if(matrix[i][j] < target) j++;
-            else return true;
-        }
         return false;
     }
 }

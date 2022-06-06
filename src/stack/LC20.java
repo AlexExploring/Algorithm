@@ -70,19 +70,21 @@ public class LC20 {
 
     //不需要使用map
     public static boolean isValid2(String s) {
-        if(s.isEmpty())
-            return true;
+        if(s.isEmpty()) return true;
+
         Stack<Character> stack=new Stack<Character>();
+
         for(char c:s.toCharArray()){
-            if(c=='(')
+            if(c == '(')
                 stack.push(')');
-            else if(c=='{')
+            else if(c == '{')
                 stack.push('}');
-            else if(c=='[')
+            else if(c == '[')
                 stack.push(']');
             else if(stack.empty()||c!=stack.pop())
                 return false;
         }
+
         return stack.empty();
     }
 }

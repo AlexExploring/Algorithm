@@ -2,11 +2,14 @@ package DP.subsequence;
 
 /**
  * 最长递增子序列
+ *
+ * 题目：给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
  */
 public class LC300 {
 
     /**
-     * dp[i]的状态是由 dp[0,i-1]的所有状态转移过来的
+     * 定义 dp[i] 为考虑前 i 个元素，以第 i 个数字结尾的最长上升子序列的长度，
+     * 注意 nums[i] 必须被选取
      */
     public static int max(int [] nums){
         int len = nums.length;
@@ -15,6 +18,7 @@ public class LC300 {
         int[] dp = new int[len];
         dp[0] = 1;
         int max = 1;
+
         for (int i = 1; i < len; i++) {
             dp[i] = 1;
             for (int j = 0; j < i; j++) {
@@ -25,6 +29,7 @@ public class LC300 {
             }
             max = Math.max(max, dp[i]);
         }
+
         return max;
     }
 
@@ -44,16 +49,20 @@ public class LC300 {
      */
     public static int max1(int [] nums){
         int len = 1, n = nums.length;
+
         if (n == 0) {
             return 0;
         }
+
         int[] d = new int[n + 1];
         d[len] = nums[0];
+
         for (int i = 1; i < n; ++i) {
             if (nums[i] > d[len]) {
                 d[++len] = nums[i];
             } else {
-                int l = 1, r = len, pos = 0; // 如果找不到说明所有的数都比 nums[i]
+                // 如果找不到说明所有的数都比 nums[i]
+                int l = 1, r = len, pos = 0;
                 // 大，此时要更新 d[1]，所以这里将 pos 设为 0
                 while (l <= r) {
                     int mid = (l + r) >> 1;
@@ -67,6 +76,7 @@ public class LC300 {
                 d[pos + 1] = nums[i];
             }
         }
+
         return len;
     }
 }
