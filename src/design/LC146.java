@@ -8,10 +8,14 @@ import java.util.Map;
  * LRU (Least Recently Used，最近最少使用) 缓存
  */
 public class LC146 {
+
 }
 
 class LRUCache extends LinkedHashMap<Integer,Integer> {
-    //容量
+
+    /**
+     * 容量
+     */
     private int capacity;
 
     public LRUCache(int capacity) {

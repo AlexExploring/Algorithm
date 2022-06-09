@@ -33,12 +33,23 @@ public class LC236 {
         return root;
     }
 
+
+
+    /**
+     * 首先遍历树，使用map存储所有节点值的父节点
+     *
+     * 注意数据范围：
+     * 树中节点数目在范围 [2, 105] 内。
+     * -109 <= Node.val <= 109
+     * 所有 Node.val 互不相同 。
+     * p != q
+     * p 和 q 均存在于给定的二叉树中。
+     *
+     */
+
     Map<Integer, TreeNode> parent = new HashMap<Integer, TreeNode>();
     Set<Integer> visited = new HashSet<Integer>();
 
-    /**
-     *
-     */
     public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         //先获得除根节点之外所有节点的父节点
         dfs(root);

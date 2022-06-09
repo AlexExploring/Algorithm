@@ -22,7 +22,7 @@ public class LC239 {
         if (len == 0) return new int[0];
 
         //传入一个内部比较器
-        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
+        Queue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
             public int compare(int[] pair1, int[] pair2) {
                 //根据对应的比较器规则，这里得到的是大根堆，（值相等的时候，必须要根据下标再排序）
                 return pair1[0] != pair2[0] ? pair2[0] - pair1[0] : pair2[1] - pair1[1];
@@ -83,7 +83,7 @@ public class LC239 {
             }
             //添加新元素
             queue.offerLast(i);
-            //如果队首不在窗口内，则将队首弹出
+            //队列的左端在nums中对应的值一定是当前队列的最大值，但需要确保最大值在当前窗口中
             while (queue.peekFirst() <= i - k) {
                 queue.pollFirst();
             }

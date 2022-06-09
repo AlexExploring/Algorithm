@@ -11,7 +11,7 @@ public class Quick {
 
     public static void main(String[] args) {
         int [] a = {7,5,6,8,2,3};
-        new Quick().quickSort4(a,0,a.length-1);
+        new Quick().quickSort3(a,0,a.length-1);
         System.out.println(Arrays.toString(a));
     }
 
@@ -85,38 +85,36 @@ public class Quick {
     /**
      * 写法四：引入随机化防止快速排退化
      */
-    public void quickSort4(int[] nums, int l, int r) {
+    public void quickSort3(int[] nums, int l, int r) {
         if (l < r) {
-            System.out.println("quickSort4:"+" l="+l+" r="+r+"  "+ Arrays.toString(nums));
             int pos = randomPartition(nums, l, r);
-            quickSort4(nums, l, pos - 1);
-            quickSort4(nums, pos + 1, r);
+            quickSort3(nums, l, pos - 1);
+            quickSort3(nums, pos + 1, r);
         }
     }
 
     private Random random = new Random();
 
+    /**
+     * 随机划分
+     */
     public int randomPartition(int[] nums, int l, int r) {
-        // 随机选一个作为我们的主元
-        int i = random.nextInt(r - l + 1) + l;
+        // 随机选一个[l,r]中的数作为我们的主元的下标
+        int pivot = random.nextInt(r - l + 1) + l;
         // 交换r,i处的元素
-        swap(nums, r, i);
-        System.out.println("randomPartition:"+" l="+l+" r="+r+"  "+ Arrays.toString(nums));
+        swap(nums, r, pivot);
         return partition(nums, l, r);
     }
 
     public int partition(int[] nums, int l, int r) {
         int key = nums[r],i = l - 1;
-        System.out.println("partition:"+" l="+l+" r="+r+" key="+key+ Arrays.toString(nums));
         for (int j = l; j < r; ++j) {
             if (nums[j] <= key) {
                 i = i + 1;
                 swap(nums, i, j);
-                System.out.println("i="+i+" j="+j+" "+Arrays.toString(nums));
             }
         }
         swap(nums, i + 1, r);
-        System.out.println(Arrays.toString(nums));
         return i + 1;
     }
 

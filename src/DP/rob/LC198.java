@@ -33,6 +33,8 @@ public class LC198 {
             //偷第n-1间则不能偷第n间，偷第n-2间则可以偷第n间
             dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i]);
         }
+
+        //可能会偷最后一间，也可能不偷
         return dp[len-1];
     }
 
@@ -54,6 +56,7 @@ public class LC198 {
             second = Math.max(second,first+nums[i]);
             first = temp;
         }
+
         return second;
     }
 }

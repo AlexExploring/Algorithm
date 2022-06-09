@@ -1,4 +1,4 @@
-package binaryTree;
+package binaryTree.pathSum;
 
 /**
  *二叉树中的最大路径和
@@ -15,7 +15,6 @@ public class LC124 {
      * 首先，考虑实现一个简化的函数 maxGain(node)，该函数计算二叉树中的一个节
      * 点的最大贡献值，具体而言，就是在以该节点为根节点的子树中寻找以该节点为起点
      * 的一条路径，使得该路径上的节点值之和最大。
-     *
      */
     public int maxGain(TreeNode node) {
         if (node == null) {
@@ -38,10 +37,10 @@ public class LC124 {
 
         // 本质上就是选择某一个节点，以及它的leftGain()和rightGain()的最大值。。。
         //而左右两边可以只有一个节点，也可以是一系列从一系列的子树中选择出的最大值。。。
-        int priceNewpath = node.val + leftGain + rightGain;
+        int t = node.val + leftGain + rightGain;
 
         // 更新答案
-        maxSum = Math.max(maxSum, priceNewpath);  //关键点，二叉树的遍历的顺序
+        maxSum = Math.max(maxSum, t);  //关键点，二叉树的遍历的顺序
         // ，二叉树的结构，答案是由二叉树中的那些节点组合起来的
 
         // 返回节点的最大贡献值

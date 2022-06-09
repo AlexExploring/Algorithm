@@ -8,12 +8,17 @@ public class LC208 {
 }
 
 class Trie {
+
     private Trie [] children;
+
+    /**
+     * 用于标标记是否为一个单词
+     */
     private boolean isEnd;
 
     public Trie() {
         children = new Trie[26];
-        isEnd = false; //用来标识是否有一个完整的单词
+        isEnd = false;
     }
 
     public void insert(String word) {
@@ -28,7 +33,7 @@ class Trie {
         }
         node.isEnd = true;
     }
-
+    
     public boolean search(String word) {
         Trie node = searchPrefix(word);
         return node != null && node.isEnd;

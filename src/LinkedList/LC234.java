@@ -10,19 +10,24 @@ public class LC234 {
 
     /**
      * 将值复制到数组中后使用双指针判断是否回文
+     *
+     * 时间复杂度为O(n),空间复杂度为O(1)
      */
     public boolean isPalindrome(ListNode head) {
         List<Integer> list = new ArrayList<>();
-        while (head!=null){
+        while (head != null){
             list.add(head.val);
             head = head.next;
         }
 
         int l = 0,r = list.size()-1;
-        while (l<=r){
-            if (list.get(l)==list.get(r)){
-                l++;r--;
-            }else return false;
+        while (l <= r){
+            if (list.get(l) == list.get(r)){
+                l++;
+                r--;
+            }else {
+                return false;
+            }
         }
 
         return true;
@@ -64,12 +69,14 @@ public class LC234 {
     private ListNode reverseList(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
+
         while (curr != null) {
             ListNode nextTemp = curr.next;
             curr.next = prev;
             prev = curr;
             curr = nextTemp;
         }
+
         return prev;
     }
 

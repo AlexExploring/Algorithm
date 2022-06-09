@@ -1,6 +1,5 @@
 package sort;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -13,20 +12,21 @@ public class LC215 {
      */
     public int findKthLargest(int[] nums, int k) {
         int len = nums.length;
+
+        //只需要k轮，即可确定第k大的数字
         for (int i = 0; i < k; i++) {
             for (int j = 0; j < len - 1 - i; j++) {
                 if (nums[j] > nums[j+1]) {
-                    int temp = nums[j+1];
-                    nums[j+1] = nums[j];
-                    nums[j] = temp;
+                    swap(nums,j,j+1);
                 }
             }
         }
+
         return nums[len - k];
     }
 
     /**
-     * 基于速排序
+     * 基于速排序 + 随机化划分
      */
     public int findKthLargest1(int[] nums, int k) {
         //nums.length()-k 即为倒数第k个下标，也即为第K大的数字的下标
@@ -47,9 +47,9 @@ public class LC215 {
 
     public int randomPartition(int[] nums, int l, int r) {
         // 随机选一个作为我们的主元
-        int i = random.nextInt(r - l + 1) + l;
+        int pivot = random.nextInt(r - l + 1) + l;
         // 交换r,i处的元素
-        swap(nums, r, i);
+        swap(nums, r, pivot);
         return partition(nums, l, r);
     }
 
@@ -69,6 +69,9 @@ public class LC215 {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
-
     }
+
+    /**
+     * 还可以使用优先队列解决
+     */
 }

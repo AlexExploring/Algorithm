@@ -54,7 +54,9 @@ public class StackTraverseTemplate {
         if (root == null) return;
 
         Deque<TreeNode> stack = new LinkedList<>();
+        //prev 用于记录上一个访问的节点
         TreeNode prev = null,curr = root;
+
         while (curr != null || !stack.isEmpty()) {
             while (curr != null) {
                 stack.push(curr);

@@ -12,13 +12,14 @@ public class LC121 {
         int len = prices.length;
         if (len <= 1) return 0;
 
-        int minprice = Integer.MAX_VALUE;
+        int minPrice = Integer.MAX_VALUE;
         int max_profit = 0;
+
         for(int price : prices){
-            if (price < minprice)
-                minprice = price;
-            else if (price-minprice > max_profit){
-                max_profit = price-minprice;
+            if (price < minPrice)
+                minPrice = price;
+            else if (price - minPrice > max_profit){
+                max_profit = price-minPrice;
             }
         }
 

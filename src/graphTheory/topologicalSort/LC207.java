@@ -46,18 +46,17 @@ public class LC207 {
     public void dfs(int u) {
         // 将节点标记为「搜索中」
         visited[u] = 1;
-        // 搜索其相邻节点
-        // 只要发现有环，立刻停止搜索
+        // 搜索其相邻节点,只要发现有环，立刻停止搜索
         for (int v: edges.get(u)) {
             // 如果「未搜索」那么搜索相邻节点
             if (visited[v] == 0) {
                 dfs(v);
+                //剪枝操作，也可不写
                 if (!valid) {
                     return;
                 }
-            }
-            // 如果「搜索中」说明找到了环,即尝试搜索正在搜索中的点
-            else if (visited[v] == 1) {
+                // 如果「搜索中」说明找到了环,即尝试搜索正在搜索中的点
+            } else if (visited[v] == 1) {
                 valid = false;
                 return;
             }

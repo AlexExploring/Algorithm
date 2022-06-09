@@ -43,7 +43,7 @@ public class LC160 {
             return null;
         }
         ListNode pA = headA, pB = headB;
-        //即使两链表不相交，最终也会相等
+        //即使两链表不相交，最终也会相等,同时为null
         while (pA != pB) {
             pA = pA == null ? headB : pA.next;
             pB = pB == null ? headA : pB.next;
