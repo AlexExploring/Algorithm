@@ -20,9 +20,8 @@ public class LC3 {
         //双重for循环枚举起始位置
         for (int i = 0; i < len; i++) {
             for (int j = i; j < len; j++) {
-                if (!set.contains(s.charAt(j))) {
-                    set.add(s.charAt(j));
-                } else {
+                //添加失败说明有重复的值
+                if (!set.add(s.charAt(j))) {
                     ans = Math.max(set.size(), ans);
                     set.clear();
                     break;
@@ -44,7 +43,7 @@ public class LC3 {
         int r = -1, ans = 0;
         for (int i = 0; i < len; ++i) {
             if (i != 0) {
-                // 左指针向右移动一格，移除之前窗口中左边的字符
+                // 左指针向右移动一格，移除之前窗口中最左边的字符
                 set.remove(s.charAt(i - 1));
             }
             // 判断下一个字符是否已经在set中
@@ -60,19 +59,23 @@ public class LC3 {
     }
 
     /**
+     * 使用map记录字符对应的下标
+     *
      * 这种写法，省去了大量不必要的增删操作，从而节省了大量的时间
      */
     public int lengthOfLongestSubstring2(String s) {
         Map<Character, Integer> dic = new HashMap<>();
-        int i = -1, res = 0;
+        int i = -1, ans = 0;
+
         for (int j = 0; j < s.length(); j++) {
             if (dic.containsKey(s.charAt(j))) {
                 // 更新左指针 i，保证计算结果的时候，i是当前字符的最大下标
                 i = Math.max(i, dic.get(s.charAt(j)));
             }
             dic.put(s.charAt(j), j); // 哈希表记录
-            res = Math.max(res, j - i); // 更新结果
+            ans = Math.max(ans, j - i); // 更新结果
         }
-        return res;
+
+        return ans;
     }
 }

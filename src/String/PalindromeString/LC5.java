@@ -1,6 +1,4 @@
-package String.substring;
-
-import java.util.IllegalFormatCodePointException;
+package String.PalindromeString;
 
 /**
  * 最长回文子串
@@ -8,7 +6,7 @@ import java.util.IllegalFormatCodePointException;
 public class LC5 {
 
     /**
-     * 暴力枚举
+     * 暴力枚举所有长度严格大于1的子串,并对每一子串判断是否为回文字符串
      */
     public String longestPalindrome(String s) {
         int len = s.length();
@@ -17,7 +15,6 @@ public class LC5 {
         int start = 0,maxLen = 1;
         char [] a = s.toCharArray();
 
-        //枚举所有长度严格大于1的子串a[i...j],
         for (int i = 0; i < len-1; i++) {
             for (int j = i+1; j < len; j++) {
                 if (isPalindrome(a,i,j) && j-i+1 > maxLen){
@@ -30,19 +27,20 @@ public class LC5 {
         return s.substring(start,start+maxLen);
     }
 
-    public static boolean isPalindrome(char [] a,int start,int end){
-        while (start < end){
-            if (a[start] != a[end]){
+    public boolean isPalindrome(char [] a,int l,int r){
+        while (l < r){
+            if (a[l] != a[r]){
                 return false;
             }
-            start++;
-            end--;
+            l++;
+            r--;
         }
+
         return true;
     }
 
     /**
-     * 中心扩展法
+     * 中心扩展法,枚举所有可能的回文中心
      */
     public String longestPalindrome1(String s) {
         if (s == null || s.length() < 1) return "";
@@ -50,10 +48,13 @@ public class LC5 {
         int start = 0, end = 0;
 
         for (int i = 0; i < s.length(); i++) {
+            //一个位置作为回文中心
             int len1 = expandAroundCenter(s, i, i);
+            //两个位置作为回文中心
             int len2 = expandAroundCenter(s, i, i + 1);
             int len = Math.max(len1, len2);
             if (len > end - start) {
+                //下面的处理，可以保证len==len1 或者 len=len2的情况都能算出正确的值
                 start = i - (len - 1) / 2;
                 end = i + len / 2;
             }
@@ -82,8 +83,7 @@ public class LC5 {
         int len = s.length();
         if (len < 2) return s;
 
-        int maxLen = 1;
-        int begin = 0;
+        int maxLen = 1,begin = 0;
         boolean [][] dp = new boolean[len][len];
         for (int i = 0; i < len; i++) {
             dp[i][i] = true;
@@ -95,8 +95,7 @@ public class LC5 {
             for (int i = 0; i < j; i++) {
                 if (a[i] != a[j]) {
                     dp[i][j] = false;
-                }
-                else {
+                } else {
                     if (j-i < 3){
                         dp[i][j] = true;
                     }else {
@@ -115,6 +114,4 @@ public class LC5 {
 
         return s.substring(begin,begin+maxLen);
     }
-
-
 }

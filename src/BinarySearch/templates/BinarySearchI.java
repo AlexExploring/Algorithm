@@ -22,12 +22,12 @@ public class BinarySearchI {
         int l = 0,r = arr.length-1;
         while(l <= r){
             int mid = l + (r-l)/2;
-            if(target==arr[mid]) {
+            if(target == arr[mid]) {
                 return mid;
-            }else if(target>arr[mid]) {
-                l=mid+1;
+            }else if(target > arr[mid]) {
+                l = mid+1;
             }else{
-                r=mid-1;
+                r = mid-1;
             }
         }
 
@@ -35,7 +35,7 @@ public class BinarySearchI {
     }
 
     /**
-     * 查找arr中第一个不小于目标值的数的下标，需要注意目标数并不一定在数组中
+     * 查找arr中第一个大于等于目标值的数的下标，需要注意目标数并不一定在数组中
      */
     public int binarySearch1(int [] arr,int target){
         if(arr == null || arr.length == 0) return -1;

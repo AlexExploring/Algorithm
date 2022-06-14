@@ -10,9 +10,12 @@ public class LC34 {
     public int[] searchRange(int[] nums, int target) {
         int left = helper(nums,target-1);
         int right = helper(nums,target)-1;
+
+        //必须校验得到的两个下标是否符合条件
         if (left <= right && right < nums.length && nums[left] == target && nums[right] == target) {
             return new int[]{left,right};
         }
+
         return new int[]{-1,-1};
     }
 

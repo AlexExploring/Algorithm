@@ -1,7 +1,7 @@
-package String;
+package String.arithmetic;
 
 /**
- *=罗马数字转整数
+ * 罗马数字转整数
  */
 public class LC13 {
     public static void main(String[] args) {
@@ -18,7 +18,6 @@ public class LC13 {
         if (data.indexOf("M")==0) {
             ans+=values[0];data.deleteCharAt(0);
         }
-
 
         return ans;
     }

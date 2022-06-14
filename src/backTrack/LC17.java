@@ -1,42 +1,46 @@
 package backTrack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+/**
+ * 电话号码的字母组合
+ */
 public class LC17 {
-    public static void main(String[] args){
-        Scanner scan = new Scanner(System.in);
-        LC17 a = new LC17();
-        System.out.println(a.letterCombinations(scan.nextLine()));
+
+    public static void main(String[] args) {
+        new LC17().letterCombinations("23");
     }
 
     HashMap<Integer,String> map = new HashMap<>();
-    List ans = new ArrayList();
-    String t = new String();
+    List<String> ans = new ArrayList();
+    StringBuffer temp = new StringBuffer();
     String [] data = {"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-    public List<String> letterCombinations(String digits) {
-        if (digits==null){
-            return ans;
-        }
 
+    public List<String> letterCombinations(String digits) {
         int len = digits.length();
+        if (len == 0) return ans;
+
         initMap();
-        char [] t = digits.toCharArray();
         String [] des = new String[len];
         for (int i = 0; i < len; i++) {
-            des[i] = map.get(t[i]-'0');
+            des[i] = map.get(digits.charAt(i)-'0');
         }
+
         backTrack(des,len,0);
+
         return ans;
     }
 
     public void backTrack(String [] des,int len,int now){
         if (now == len){
-            ans.add(t);
+            ans.add(new String(temp));
         }else {
             for (int i = 0; i < des[now].length(); i++) {
-                t = t+des[now].charAt(i);
+                temp.append(des[now].charAt(i));
                 backTrack(des,len,now+1);
-                t = t.substring(0,t.length()-1); //LC17_1使用StringBuffer对这里进行了优化
+                temp.deleteCharAt(now);
             }
         }
     }
