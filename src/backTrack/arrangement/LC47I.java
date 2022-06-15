@@ -2,9 +2,17 @@ package backTrack.arrangement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LC47I {
+
+    public static void main(String[] args) {
+        List<List<Integer>> lists = new LC47I().permuteUnique(new int[]{1,1,2});
+        for (List<Integer> list : lists) {
+            System.out.println(Arrays.toString(list.stream().toArray()));
+        }
+    }
 
     List<List<Integer>> ans = new ArrayList<List<Integer>>();
     List<Integer> perm = new ArrayList<Integer>();

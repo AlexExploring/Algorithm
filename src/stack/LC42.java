@@ -3,7 +3,7 @@ package stack;
 import java.util.Stack;
 
 /**
- *接雨水
+ * 接雨水
  *
  * 题解链接
  * https://leetcode-cn.com/problems/trapping-rain-water/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-8/
@@ -11,44 +11,11 @@ import java.util.Stack;
  * 重点是找到计算区间中水的方法
  */
 public class LC42 {
-    public static void main(String[] args) {
 
-    }
-
-    //,构思好如何求解的逻辑十分关键
-    //这里是按行求解   超出时间限制
+    /**
+     * 每一次统计出当前列左边列的最大值和右边列的最大值
+     */
     public int trap(int[] height) {
-        int sum = 0;
-        int max = getMax(height);//找到最大的高度，以便遍历。
-        for (int i = 1; i <= max; i++) {
-            boolean isStart = false; //标记是否开始更新 temp
-            int temp_sum = 0;
-            for (int j = 0; j < height.length; j++) {
-                if (isStart && height[j] < i) {
-                    temp_sum++;
-                }
-                if (height[j] >= i) {
-                    sum += temp_sum;
-                    temp_sum = 0;
-                    isStart = true;
-                }
-            }
-        }
-        return sum;
-    }
-
-    private int getMax(int[] height) {
-        int max = 0;
-        for (int i = 0; i < height.length; i++) {
-            if (height[i] > max) {
-                max = height[i];
-            }
-        }
-        return max;
-    }
-
-    //按列求
-    public int trap1(int[] height) {
         int sum = 0;
         //最两端的列不用考虑，因为一定不会有水。所以下标从 1 到 length - 2
         for (int i = 1; i < height.length - 1; i++) {
@@ -76,42 +43,47 @@ public class LC42 {
         return sum;
     }
 
-    public int trap2(int[] height) {
+    /**
+     * 动态规划
+     */
+    public int trap1(int[] height) {
         if (height.length<3) return 0;
         int sum = 0;
-        int[] max_left = new int[height.length];
-        int[] max_right = new int[height.length];
+        int[] maxLeft = new int[height.length];
+        int[] maxRight = new int[height.length];
 
-        //利用动态规划求出每一列的左端最大值，和右端最大值
-        //max_left最多求到倒数第三个数
+        //利用动态规划求出每一列的左端最大值
+        //maxLeft最多求到倒数第三个数
         for (int i = 1; i < height.length - 1; i++) {
-            max_left[i] = Math.max(max_left[i - 1], height[i - 1]);
+            maxLeft[i] = Math.max(maxLeft[i - 1], height[i - 1]);
         }
-
+        //利用动态规划求出每一列的右端最大值
         for (int i = height.length - 2; i >= 0; i--) {
-            max_right[i] = Math.max(max_right[i + 1], height[i + 1]);
+            maxRight[i] = Math.max(maxRight[i + 1], height[i + 1]);
         }
 
         for (int i = 1; i < height.length - 1; i++) {
-            int min = Math.min(max_left[i], max_right[i]);
+            int min = Math.min(maxLeft[i], maxRight[i]);
             if (min > height[i]) {
                 sum += (min - height[i]);
             }
         }
+
         return sum;
     }
 
-    //对动态规划解法的优化，观察dp数组中的值的应用，发现max_left [ i ] 和
-    // max_right [ i ] 数组中的元素我们其实只用一次，然后就再也不会用到了。
-    //但这里不同同时将两个数组去掉。
-    //如果从右向左遍历的话，就可以去掉max_right()数组，使用一个max_right指针
-    public int trap3(int[] height) {
+    /**
+     * 动态规划解法的优化
+     */
+    public int trap2(int[] height) {
         int sum = 0;
         int max_left = 0;
         int[] max_right = new int[height.length];
+
         for (int i = height.length - 2; i >= 0; i--) {
             max_right[i] = Math.max(max_right[i + 1], height[i + 1]);
         }
+
         for (int i = 1; i < height.length - 1; i++) {
             max_left = Math.max(max_left, height[i - 1]);
             int min = Math.min(max_left, max_right[i]);
@@ -119,10 +91,10 @@ public class LC42 {
                 sum = sum + (min - height[i]);
             }
         }
+
         return sum;
     }
 
-    //如何求解区间中的水是一个难点
     public int trap4(int[] height) {
         int sum = 0;
         Stack<Integer> stack = new Stack<>();
@@ -144,5 +116,4 @@ public class LC42 {
         }
         return sum;
     }
-
 }

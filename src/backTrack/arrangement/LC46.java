@@ -24,7 +24,9 @@ public class LC46 {
     public List<List<Integer>> permute(int[] nums) {
         int len = nums.length;
         int [] book = new int[len];
+
         backTrack(book,nums,len);
+
         return ans;
     }
 
