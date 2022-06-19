@@ -30,7 +30,7 @@ public class LC62 {
             dp[i][0]=1;
         }
 
-        for (int i=1;i < m;i++){
+        for (int i = 1;i < m;i++){
             for (int j = 1;j < n;j++){
                 dp[i][j] = dp[i-1][j]+dp[i][j-1];
             }
@@ -40,7 +40,7 @@ public class LC62 {
     }
 
     /**
-     *优化
+     * 优化
      * 时间复杂度：O(mn)。
      *
      * 空间复杂度：O(mn)，即为存储所有状态需要的空间。注意到 f(i, j)
@@ -55,9 +55,9 @@ public class LC62 {
         //处理第一行
         Arrays.fill(dp,1);
 
-        for (int i=1;i < m;i++){
+        for (int i = 1;i < m;i++){
             for (int j = 1;j < n;j++){
-                dp[j] = dp[j-1]+dp[j];
+                dp[j] = dp[j] + dp[j-1];
             }
         }
 

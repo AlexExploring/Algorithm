@@ -1,9 +1,5 @@
 package DP.matrix;
 
-/**
- * @author zhxspacex
- * @date 2021/1/2 22:44
- */
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -13,45 +9,51 @@ import java.util.LinkedList;
  * 相关题目
  */
 public class LC85 {
-    public static void main(String[] args) {
 
-    }
-
-    public int maximalRectangle1(char[][] matrix) {
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
+    /**
+     * 思路：left[i][j] 为矩阵第 i 行第 j 列元素的左边连续 1 的数量。
+     * 随后，对于矩阵中任意一个点，我们枚举以该点为右下角的全 1 矩形。
+     * 具体而言，当考察以 matrix[i][j] 为右下角的矩形时，我们枚举满足
+     * 0≤k≤i 的所有可能的 k，此时矩阵的最大宽度就为
+     * left[i][j],left[i−1][j],…,left[k][j] 的最小值。
+     */
+    public int maximalRectangle(char[][] matrix) {
+        int rows = matrix.length;
+        if (rows == 0) {
             return 0;
-        int rows = matrix.length,cols = matrix[0].length;
-        int [][] left = new int[rows][cols];
+        }
+        int cols = matrix[0].length;
+        int[][] left = new int[rows][cols];
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if(left[i][j]=='1'){
-                    left[i][j] = (j==0 ? 0 : left[i][j-1])+1;
+                if (matrix[i][j] == '1') {
+                    left[i][j] = (j == 0 ? 0 : left[i][j - 1]) + 1;
                 }
             }
         }
 
-        int ret = 0;
+        int ans = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (matrix[i][j]==0){
-                    continue;
+                if (matrix[i][j] != '0') {
+                    int width = left[i][j];
+                    int area = width;
+                    for (int k = i - 1; k >= 0; k--) {
+                        width = Math.min(width, left[k][j]);
+                        area = Math.max(area, (i - k + 1) * width);
+                    }
+                    ans = Math.max(ans, area);
                 }
-                int width = left[i][j];
-                int area = width;
-                for (int k = i-1; k >= 0; k--) {
-                    width = Math.min(width,left[k][j]);
-                    area = Math.max(area,(i-k+1)*width);
-                }
-                ret = Math.max(ret,area);
             }
         }
-        return ret;
+        return ans;
     }
 
     /**
      *单调栈解法
      */
-    public int maximalRectangle2(char[][] matrix) {
+    public int maximalRectangle1(char[][] matrix) {
         int rows = matrix.length;
         if (rows == 0) {
             return 0;

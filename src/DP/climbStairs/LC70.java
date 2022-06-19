@@ -10,16 +10,18 @@ import java.util.Scanner;
 public class LC70 {
     
     /**
-     * 递推
+     * 找规律递推
      * 注意 n >= 1 ; n <= 45
      */
     public int climbStairs(int n){
         int p = 0,q = 1,sum = 0;
+
         for (int i = 1; i <= n; i++) {
             sum = p+q;
             p = q;
             q = sum;
         }
+
         return sum;
     }
 
@@ -34,13 +36,13 @@ public class LC70 {
     }
 
 
-    HashMap<Integer,Long> map = new HashMap();
-
     /**
      * 记忆化递归
      */
+    HashMap<Integer,Long> map = new HashMap();
+
     public long climbStairs3(int n) {
-        if (n<=2)
+        if (n <= 2)
             return n;
         else {
             if (map.containsKey(n))

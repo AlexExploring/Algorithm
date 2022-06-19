@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 找到字符串中所有字母异位词
- *
+ * LC49 字母异位词分组 （只包含小写字母）
  * 和LC567 类似
  */
 public class LC438 {

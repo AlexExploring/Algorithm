@@ -1,6 +1,4 @@
-package Top100;
-
-import backTrack.arrangement.LC47I;
+package array.matrix;
 
 /**
  * 旋转图像
@@ -8,15 +6,6 @@ import backTrack.arrangement.LC47I;
  * 矩阵操作
  */
 public class LC48 {
-
-    public static void main(String[] args) {
-        int [][] mat = new int[3][];
-        mat[0] = new int[]{1,2,3};
-        mat[1] = new int[]{4,5,6};
-        mat[2] = new int[]{7,8,9};
-        new LC48().rotate(mat);
-    }
-
     /**
      * 方法一
      *

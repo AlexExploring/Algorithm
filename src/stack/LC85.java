@@ -1,9 +1,5 @@
 package stack;
 
-/**
- * @author zhxspacex
- * @date 2021/1/2 22:44
- */
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -13,10 +9,6 @@ import java.util.LinkedList;
  * 相关题目
  */
 public class LC85 {
-    public static void main(String[] args) {
-        System.out.println(new LC85().maximalRectangle1(new char[][]{{'1', '0', '1', '0', '0'}, {'1', '0', '1', '1', '1'}, {'1', '1', '1', '1', '1'}, {'1', '0', '0', '1', '0'}}));
-
-    }
 
     /**
      * 思路：left[i][j] 为矩阵第 i 行第 j 列元素的左边连续 1 的数量。
@@ -25,7 +17,7 @@ public class LC85 {
      * 0≤k≤i 的所有可能的 k，此时矩阵的最大宽度就为
      * left[i][j],left[i−1][j],…,left[k][j] 的最小值。
      */
-    public int maximalRectangle1(char[][] matrix) {
+    public int maximalRectangle(char[][] matrix) {
         int rows = matrix.length;
         if (rows == 0) {
             return 0;

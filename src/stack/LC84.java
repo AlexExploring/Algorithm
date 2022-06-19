@@ -17,8 +17,8 @@ public class LC84 {
      * 超出时间限制
      */
     public static int largestRectangleArea(int[] heights) {
-        int n = heights.length;
-        int ans = 0;
+        int n = heights.length,ans = 0;
+
         // 枚举左边界
         for (int left = 0; left < n; ++left) {
             int minHeight = Integer.MAX_VALUE;
@@ -30,6 +30,7 @@ public class LC84 {
                 ans = Math.max(ans, (right - left + 1) * minHeight);
             }
         }
+
         return ans;
     }
 
@@ -57,7 +58,7 @@ public class LC84 {
         }
 
         stack.clear();
-        for (int i = len - 1; i >= 0; --i) {
+        for (int i = len - 1; i >= 0; i--) {
             while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
                 stack.pop();
             }
@@ -67,8 +68,9 @@ public class LC84 {
 
         int ans = 0;
         for (int i = 0; i < len; i++) {
-            ans = Math.max(ans,(right[i]-left[i]-1)*heights[i]);
+            ans = Math.max(ans,(right[i]-left[i]-1) * heights[i]);
         }
+        
         return ans;
     }
 

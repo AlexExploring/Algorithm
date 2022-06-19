@@ -51,6 +51,9 @@ public class LC53 {
      * 如果sum > 0对于后面的子序列是有好处的。res = Math.max(res, sum)保证可以找到最大的子序和。
      */
     public int maxSubArray3(int[] nums) {
+        int len = nums.length;
+        if (len == 0) return 0;
+
         int ans = nums[0],sum = 0;
 
         for (int num : nums) {
@@ -62,4 +65,7 @@ public class LC53 {
         return ans;
     }
 
+    /**
+     * 分治法
+     */
 }

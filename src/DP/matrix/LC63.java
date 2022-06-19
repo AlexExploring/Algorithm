@@ -13,7 +13,7 @@ public class LC63 {
         int m = obstacleGrid.length, n = obstacleGrid[0].length;
 
         int[][] dp = new int[m][n];
-        //处理第一行
+        //处理第一行,如果有障碍物，后面不可达
         for (int j = 0; j < n && obstacleGrid[0][j] == 0; j++) {
             dp[0][j] = 1;
         }
@@ -41,6 +41,7 @@ public class LC63 {
 
         int[] dp = new int[m];
         dp[0] = obstacleGrid[0][0] == 0 ? 1 : 0;
+
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
                 if (obstacleGrid[i][j] == 1) {
@@ -55,6 +56,7 @@ public class LC63 {
                 }
             }
         }
+
         return dp[m - 1];
     }
 }
