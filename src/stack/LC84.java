@@ -58,7 +58,7 @@ public class LC84 {
         }
 
         stack.clear();
-        for (int i = len - 1; i >= 0; i--) {
+        for (int i = len-1;i >= 0 ; i--) {
             while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
                 stack.pop();
             }
@@ -70,7 +70,7 @@ public class LC84 {
         for (int i = 0; i < len; i++) {
             ans = Math.max(ans,(right[i]-left[i]-1) * heights[i]);
         }
-        
+
         return ans;
     }
 

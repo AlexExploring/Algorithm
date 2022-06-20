@@ -22,6 +22,7 @@ public class LC78 {
         for (int i = 0; i <= nums.length; i++) {
             backTrack(nums,i,0);
         }
+
         return ans;
     }
 
@@ -70,6 +71,7 @@ public class LC78 {
     public static List<List<Integer>> subsets2(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         res.add(new ArrayList<Integer>());
+
         for (int num : nums) {
             for (int i = res.size()-1; i >= 0; i--) {
                 List<Integer> newSub = new ArrayList<Integer>(res.get(i));
@@ -77,6 +79,7 @@ public class LC78 {
                 res.add(newSub);
             }
         }
+
         return res;
     }
 
@@ -100,6 +103,7 @@ public class LC78 {
             ans.add(new ArrayList<Integer>(t));
             t.clear();
         }
+
         return ans;
     }
 }
