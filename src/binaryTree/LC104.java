@@ -30,8 +30,7 @@ public class LC104 {
 
         while (!queue.isEmpty()) {
             res++;
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = queue.size(); i >= 0; i--) {
                 TreeNode node = queue.poll();
                 if (node.left != null) queue.add(node.left);
                 if (node.right != null) queue.add(node.right);

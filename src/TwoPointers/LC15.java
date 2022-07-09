@@ -18,7 +18,7 @@ public class LC15 {
     List<Integer> tans = new ArrayList<>();
 
     /**
-     * 方法一：回溯
+     * 方法一：回溯   超时
      */
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
@@ -27,7 +27,6 @@ public class LC15 {
     }
 
     public void backTrack(int[] nums, int total, int begin) {
-        if (tans.size() > 3) return;
         if (tans.size() == 3 && total == 0) {
             ans.add(new ArrayList<>(tans));
             return;
@@ -49,10 +48,11 @@ public class LC15 {
     public List<List<Integer>> threeSum1(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         if (nums == null || nums.length < 3) return ans;
-        Arrays.sort(nums);
 
+        Arrays.sort(nums);
         int len = nums.length;
 
+        //外层for循环确定一个数，内层的while使用双指针来确定符合条件的两个数
         for (int i = 0; i < len; i++) {
             //前面对数组已经排过序，要使三数之和为0，则第一个数不可能大于0
             if (nums[i] > 0) break;
@@ -75,30 +75,5 @@ public class LC15 {
         }
 
         return ans;
-    }
-
-    public List<List<Integer>> threeSum2(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        if (nums == null || nums.length < 3) return ans;
-        Arrays.sort(nums);
-
-        int len = nums.length;
-        for (int i = 0; i < len; i++) {
-            if (nums[i] > 0) break;
-            if (i > 0 && nums[i] == nums[i-1]) continue;
-            int l = i + 1,r = len - 1;
-            while (l < r) {
-                int sum = nums[i] + nums[l] + nums[r];
-                if (sum == 0) {
-                    ans.add(Arrays.asList(nums[i],nums[l],nums[r]));
-                    while (l < r && nums[l] == nums[l+1]) l++;
-                    while (l < r && nums[r] == nums[r-1]) r--;
-                    l++;r--;
-                }else if (sum < 0) l++;
-                else r--;
-            }
-        }
-        return ans;
-    }
 
 }

@@ -30,7 +30,6 @@ public class LC2 {
 
         return head;
     }
-
 }
 
 class ListNode {

@@ -45,6 +45,7 @@ public class LC5 {
     public String longestPalindrome1(String s) {
         if (s == null || s.length() < 1) return "";
 
+        //start是起始下标，end
         int start = 0, end = 0;
 
         for (int i = 0; i < s.length(); i++) {
@@ -54,7 +55,8 @@ public class LC5 {
             int len2 = expandAroundCenter(s, i, i + 1);
             int len = Math.max(len1, len2);
             if (len > end - start) {
-                //下面的处理，可以保证len==len1 或者 len=len2的情况都能算出正确的值
+                //根据回文串的长度和i可以计算出当前的回文串的start和end
+                //下面的处理，可以保证len=len1 或者 len=len2的情况都能算出正确的值
                 start = i - (len - 1) / 2;
                 end = i + len / 2;
             }
@@ -63,6 +65,9 @@ public class LC5 {
         return s.substring(start, end + 1);
     }
 
+    /**
+     * 返回s中以l和r为回文中心的回文字符串的长度
+     */
     public int expandAroundCenter(String s, int l, int r) {
         while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
             --l;

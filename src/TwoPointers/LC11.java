@@ -6,7 +6,7 @@ package TwoPointers;
 public class LC11 {
 
     /**
-     *  正确性证明：
+     * 正确性证明：
      * 若暴力枚举，水槽两板围成面积S(i,j) 的状态总数为 C(n,2) 。
      *
      * 假设状态 S(i,j) 下 h[i]<h[j] ，在向内移动短板至 S(i+1,j) ，则相当于消去了 {S(i, j - 1), S(i, j - 2), ... , S(i, i + 1)}
@@ -18,11 +18,15 @@ public class LC11 {
      */
     public int maxArea(int[] height) {
         int l = 0, r = height.length - 1, ans = 0;
+
+        //不断向内移动短板，直到两短板相遇
         while(l < r) {
             ans = height[l] <= height[r] ?
                     Math.max(ans, (r - l) * height[l++]):
                     Math.max(ans, (r - l) * height[r--]);
         }
+
         return ans;
     }
 }
+

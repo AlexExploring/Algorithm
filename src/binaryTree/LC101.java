@@ -22,13 +22,14 @@ public class LC101 {
         if (p == null && q == null) return true;
         //只有一个为空，则返回false
         if (p != null || q != null)  return false;
-
-        //
+        //p,q都不为空，判断节点值是否相等，并递归判断
         return (p.val == q.val) && isSymmetric(p.left,q.right) && isSymmetric(p.right,q.left);
     }
 
     /**
-     * 改用迭代实现
+     * 层序遍历
+     *
+     * 一个从左到右加节点，一个从右到左加节点
      */
     public boolean isSymmetric1(TreeNode root) {
         return check(root,root);
@@ -38,6 +39,7 @@ public class LC101 {
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.offer(p);
         queue.offer(q);
+
         while (!queue.isEmpty()) {
             p = queue.poll();
             q = queue.poll();

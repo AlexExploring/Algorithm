@@ -39,9 +39,7 @@ public class LC114 {
      * 前序遍历和展开同步进行
      */
     public void flatten1(TreeNode root) {
-        if (root == null) {
-            return;
-        }
+        if (root == null) return;
 
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
         stack.push(root);

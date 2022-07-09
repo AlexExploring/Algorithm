@@ -12,16 +12,19 @@ public class LC1 {
     /**
      * 暴力
      */
-    public int[] twoSum(int [] nums,int target){
-        int [] a = new int[2];
+    public int[] twoSum(int[] nums, int target) {
+        int[] a = new int[2];
+
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i+1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target){
-                    a[0] = i;a[1] = j;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    a[0] = i;
+                    a[1] = j;
                     return a;
                 }
             }
         }
+
         return null;
     }
 
@@ -29,7 +32,7 @@ public class LC1 {
      * 使用HashMap；
      * 由于是两数之和，知道一个数的值，就应该知道另一个数；
      */
-    public int[] twoSum1(int [] nums,int target){
+    public int[] twoSum1(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; ++i) {
             if (map.containsKey(target - nums[i])) {
