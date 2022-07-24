@@ -12,19 +12,20 @@ public class LC19 {
      *  注意：n应该是 <= head的长度
      */
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if (head==null||head.next==null) return null;
+        if (head == null || head.next == null) return null;
 
-        ListNode fast = head,slow = head;
+        ListNode slow = head,fast = head;
 
         for (int i = 0; i < n; i++) {
             fast = fast.next;
         }
         if (fast == null) return head.next;
 
-        while (fast.next != null){
+        while (fast.next != null) {
             fast = fast.next;
             slow = slow.next;
         }
+
         //此时slow指向倒数第n+1个节点
         slow.next = slow.next.next;
 

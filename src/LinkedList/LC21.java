@@ -3,7 +3,7 @@ package LinkedList;
 /**
  * 合并两个有序链表
  */
-public class lC21 {
+public class LC21 {
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode head = new ListNode(0),tail = head;
