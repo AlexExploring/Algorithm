@@ -37,7 +37,8 @@ public class LC42 {
             int min = Math.min(max_left, max_right);
             //只有较小的一段大于当前列的高度才会有水，其他情况不会有水
             if (min > height[i]) {
-                sum = sum + (min - height[i]);
+                //sum 加上当前列上方可以存储的水
+                sum += (min - height[i]);
             }
         }
         return sum;
@@ -53,7 +54,6 @@ public class LC42 {
         int[] maxRight = new int[height.length];
 
         //利用动态规划求出每一列的左端最大值
-        //maxLeft最多求到倒数第三个数
         for (int i = 1; i < height.length - 1; i++) {
             maxLeft[i] = Math.max(maxLeft[i - 1], height[i - 1]);
         }
@@ -73,7 +73,7 @@ public class LC42 {
     }
 
     /**
-     * 动态规划解法的优化
+     * 动态规划解法的优化， 优化了空间复杂度
      */
     public int trap2(int[] height) {
         int sum = 0;
@@ -95,10 +95,14 @@ public class LC42 {
         return sum;
     }
 
-    public int trap4(int[] height) {
+    /**
+     * 使用栈
+     */
+    public int trap3(int[] height) {
         int sum = 0;
-        Stack<Integer> stack = new Stack<>();
         int current = 0;
+        Stack<Integer> stack = new Stack<>();
+
         while (current < height.length) {
             //如果栈不空并且当前指向的高度大于栈顶高度就一直循环
             while (!stack.empty() && height[current] > height[stack.peek()]) {
@@ -114,6 +118,7 @@ public class LC42 {
             stack.push(current); //当前指向的墙入栈
             current++; //指针后移
         }
+
         return sum;
     }
 }

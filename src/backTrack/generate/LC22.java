@@ -17,13 +17,15 @@ public class LC22 {
      * 空间复杂度：O(n)
      */
     public List<String> generateParenthesis(int n) {
-        List<String> combinations = new ArrayList<String>();
-        generateAll(new char[2 * n], 0, combinations);
-        return combinations;
+        List<String> ans = new ArrayList<String>();
+        generateAll(new char[2 * n], 0, ans);
+        return ans;
     }
 
     /**
      * 递归生成括号组合,每一个位置有两种可能
+     *
+     * 在每次身生成完毕后，再判断是否有效，其实生成了很多明显无效的字符串，效率较低
      */
     public void generateAll(char[] current, int pos, List<String> ans) {
         if (pos == current.length) {
@@ -33,18 +35,21 @@ public class LC22 {
             return;
         }
 
+        //同一个位置只有两种可能 要么为(,要么为)
         current[pos] = '(';
-        generateAll(current, pos + 1, ans);
+        generateAll(current,pos+1,ans);
         current[pos] = ')';
-        generateAll(current, pos + 1, ans);
+        generateAll(current,pos+1,ans);
     }
 
     /**
      * 判断生成的括号组合是否有效
+     *
+     * 由于只有一种括号 () ，所以可以采用双指针快速判断是否有效
      */
     public boolean isValid(char[] current) {
         int balance = 0;
-        for (char c: current) {
+        for (char c : current) {
             if (c == '(') {
                 ++balance;
             } else {
@@ -54,6 +59,7 @@ public class LC22 {
                 return false;
             }
         }
+
         return balance == 0;
     }
 
@@ -61,7 +67,7 @@ public class LC22 {
     /**
      * 回溯法  在生成字符串过程中采用模式匹配确保得到的是有效字符串
      *
-     * 我们可以通过跟踪到目前为止放置的左括号和右括号的数目来做到保证加入的字符串有效，
+     * 当左括号的数量小于max就可以添加左括号，右括号的数量小于left(左括号的数量)就可以添加右括号
      */
     public List<String> generateParenthesis1(int n) {
         List<String> ans = new ArrayList<String>();
@@ -70,6 +76,7 @@ public class LC22 {
     }
 
     public void backtrack(List<String> ans, StringBuilder cur, int left, int right, int max) {
+        //下面的括号添加规则确保了当cur.length() == max * 2的时候，cur一定是有效的
         if (cur.length() == max * 2) {
             ans.add(cur.toString());
             return;

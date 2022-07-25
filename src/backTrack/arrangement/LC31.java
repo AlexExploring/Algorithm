@@ -19,16 +19,20 @@ package backTrack.arrangement;
 public class LC31 {
 
     public static void main(String[] args) {
-        int [] nums = new int[]{1,2,4,3,6,5};
+        int [] nums = new int[]{1,2,3,5,6,4};
         new LC31().nextPermutation(nums);
     }
 
+    /**
+     * 可以处理有重复数字的情况
+     */
     public void nextPermutation(int[] nums) {
         int i = nums.length - 2;
         //从后向前找到 第一个使nums[i] < nums[i+1]的i, 一个尽可能大的小数
         while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
+
         //i >= 0，说明下一个序列存在
         if (i >= 0) {
             int j = nums.length - 1;
@@ -38,6 +42,7 @@ public class LC31 {
             }
             swap(nums, i, j);
         }
+
         //此时，由i+1到nums.length-1 必定为降序，这里直接使用双指针，反转这一部分使其为升序
         reverse(nums, i + 1);
     }
@@ -48,6 +53,9 @@ public class LC31 {
         nums[j] = temp;
     }
 
+    /**
+     * 将nums从start开始，到nums结尾的数反转
+     */
     public void reverse(int[] nums, int start) {
         int left = start, right = nums.length - 1;
         while (left < right) {

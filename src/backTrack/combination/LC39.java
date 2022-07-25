@@ -1,5 +1,6 @@
 package backTrack.combination;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,9 +24,6 @@ public class LC39 {
         return ans;
     }
 
-    /**
-     * 做加法
-     */
     public void backTrack(int begin,int [] candidates,int target,int sum){
         if (sum > target) return;
 
@@ -37,28 +35,38 @@ public class LC39 {
         //画出决策树来理解，如何重复选择某一个数字，
         for (int i = begin; i < candidates.length; i++) {
             tans.add(candidates[i]);
+            //当前选择了candidates[i],下一步依然可以选择candidates[i],则begin=i;
             backTrack(i,candidates,target,sum+candidates[i]);
             tans.remove(tans.size()-1);
         }
     }
 
-
     /**
-     * 也可以做减法
+     * 排序加剪枝优化
      */
-    public void backTrack1(int begin,int [] candidates,int target){
-        if (target < 0) return;
+    public List<List<Integer>> combinationSum1(int[] candidates, int target) {
+        //排序，方便回溯的时候剪枝
+        Arrays.sort(candidates);
+        backTrack1(0,0,candidates,target);
+        return ans;
+    }
 
-        if (target == 0){
+    public void backTrack1(int begin,int sum,int [] candidates,int target){
+        if (sum == target){
             ans.add(new ArrayList<Integer>(tans));
             return;
         }
 
-        //画出决策树来理解，如何重复选择某一个数字，
         for (int i = begin; i < candidates.length; i++) {
-            tans.add(candidates[i]);
-            backTrack1(i,candidates,target-candidates[i]);
-            tans.remove(tans.size()-1);
+            if (sum + candidates[i] <= target){
+                tans.add(candidates[i]);
+                backTrack1(i,sum+candidates[i],candidates,target);
+                tans.remove(tans.size()-1);
+            } else {
+                //由于candidates是有序的，如果 sum+当前的数 > target ，
+                // 说明当前层后序的所有选择都不符合要求，break
+                break;
+            }
         }
     }
 }

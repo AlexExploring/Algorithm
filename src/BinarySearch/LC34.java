@@ -8,7 +8,9 @@ package BinarySearch;
 public class LC34 {
 
     public int[] searchRange(int[] nums, int target) {
+        //target的开始位置
         int left = helper(nums,target-1);
+        //target的结束位置
         int right = helper(nums,target)-1;
 
         //必须校验得到的两个下标是否符合条件

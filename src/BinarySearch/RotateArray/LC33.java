@@ -9,11 +9,10 @@ package BinarySearch.RotateArray;
 public class LC33 {
 
     /**
-     * 本题要求nums中不含有重复的数字
+     * 整数数组 nums 按升序排列，数组中的值互不相同 。
      */
     public static int search(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length-1;
+        int left = 0,right = nums.length-1;
 
         while(left <= right){
             //这种写法有时候会产生溢出，即low和high相加的值可能会溢出所以
@@ -27,9 +26,9 @@ public class LC33 {
             if(nums[mid] >= nums[left]) {
                 //target 如果位于中间元素的左侧
                 if (nums[mid] > target && target >= nums[left]) {
-                    right = mid-1;
+                    right = mid - 1;
                 } else { //位于右侧
-                    left = mid+1;
+                    left = mid + 1;
                 }
             } else { //mid右侧有序
                 //target 如果位于中间元素的右侧
@@ -40,7 +39,6 @@ public class LC33 {
                 }
             }
         }
-
         return -1;
     }
 }

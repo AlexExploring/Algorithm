@@ -18,7 +18,7 @@ public class Merge {
      * mergeSort 递归 对两个有序节点序列进行合并来实现排序，分治思想
      */
     public void mergeSort(int[] arr,int left,int right){
-        //如果左边索引小于右边就可以一直分，l=r时，就是分到只剩一个数了
+        //如果left < right 就需要继续分治，l == r时，就是分到只剩一个数了
         if(left < right){
             int mid = (right - left)/2 + left;
             //向左递归分解
