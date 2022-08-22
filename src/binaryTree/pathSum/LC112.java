@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * 路径总和  LC112
  *
- * 注意点：判断该树中是否存在根节点到叶子结点的路径，这条路径上所有节点值相加等于目标个targetSum
+ * 注意点：判断该树中是否存在根节点到叶子结点的路径，这条路径上所有节点值相加等于targetSum
  * 必须要遍历到叶子节点，中途不能返回
  *
  * 相似题目；LC112 路径总和 I,LC113 路径总和 II, LC437 路径总和III
@@ -21,6 +21,7 @@ public class LC112 {
         if (root == null) {
             return false;
         }
+        //当前节点为根节点，需要判度
         if (root.left == null && root.right == null) {
             return targetSum == root.val;
         }

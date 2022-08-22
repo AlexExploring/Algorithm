@@ -1,9 +1,8 @@
-package binaryTree;
+package binaryTree.queueTraverse;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * ¶ş²æÊ÷µÄ²ãĞò±éÀú
@@ -11,10 +10,9 @@ import java.util.Queue;
 public class LC102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
-
         if (root==null) return ans;
 
-        Queue<TreeNode> queue = new LinkedList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         List<Integer> tans = new ArrayList<>();
 

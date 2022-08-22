@@ -1,4 +1,4 @@
-package binaryTree;
+package binaryTree.queueTraverse;
 
 public class TreeNode {
     int val;

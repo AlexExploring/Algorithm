@@ -2,6 +2,8 @@ package binaryTree;
 
 /**
  * 平衡二叉树
+ *
+ * 相关题目：LC104：二叉树的最大深度
  */
 public class LC110 {
 
@@ -18,7 +20,8 @@ public class LC110 {
         if (root == null) return true;
 
         //isBalanced(root.left)&&isBalanced(root.right) 递归检查每一个节点的左右子树的高度差
-        return (Math.abs(helper(root.left)-helper(root.right))<=1)&&isBalanced(root.left)&&isBalanced(root.right);
+        return (Math.abs(helper(root.left) - helper(root.right)) <= 1)
+                && isBalanced(root.left) && isBalanced(root.right);
     }
 
     /**
@@ -36,9 +39,13 @@ public class LC110 {
     /**
      * 自底向上的递归
      *
-     * 思路:思路是对二叉树做后序遍历，从底至顶返回子树深度，若判定某子树不是平衡树则 “剪枝” ，直接向上返回。
+     * 思路:思路是对二叉树做后序遍历，从底至顶返回子树深度，
+     * 若判定某子树不是平衡树则 “剪枝” ，直接向上返回。
+     *
+     * @return -1:说明以root为根节点的子树不平衡;否则
+     * 返回的就是以root为根节点的子树的高度
      */
-    private int recur(TreeNode root) {
+    public int recur(TreeNode root) {
         if (root == null) return 0;
 
         int left = recur(root.left);

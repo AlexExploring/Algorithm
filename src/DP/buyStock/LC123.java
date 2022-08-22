@@ -1,27 +1,15 @@
 package DP.buyStock;
 
-import java.util.Scanner;
-
 /**
- * 买卖股票的最佳时机III
+ * 买卖股票的最佳时机III （最多可完成两笔交易）
  */
 public class LC123 {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-       String s = scan.nextLine();
-       String c []  = s.split(" ");
-       int [] a = new int[c.length];
-        for (int i = 0; i < a.length; i++) {
-            a[i] = Integer.valueOf(c[i]);
-        }
-        System.out.println(maxProfit(a));
-    }
 
     /**
      *双向遍历，
      *
-     * dp1[i] = max(dp[i-1], prices[i] - minval) 从前往后遍历，表示第1天到第i天之间的最大利润（通过是否在第i天卖出确认）；
-     * dp2[i] = max(dp[i+1], maxval - prices[i]) 从后往前遍历，表示第i天到最后一天之间的最大利润（通过是否在第i天买进确认）；
+     * dp1[i] = max(dp[i-1], prices[i] - min) 从前往后遍历，表示第1天到第i天之间的最大利润（通过是否在第i天卖出确认）；
+     * dp2[i] = max(dp[i+1], max - prices[i]) 从后往前遍历，表示第i天到最后一天之间的最大利润（通过是否在第i天买进确认）；
      * res = max(dp1 + dp2)，(dp1 + dp2)[i] 正好表示从第1天到最后一天经过两次交易的最大利润，我们的目标是找到令总利润最大的i。
      */
     public static int maxProfit(int[] prices) {
@@ -29,23 +17,23 @@ public class LC123 {
         if (len < 2) return 0;
         int [] dp1 = new int[len];
         int [] dp2 = new int[len];
-        int minval = prices[0];
-        int maxval = prices[len-1];
-        int tmax = 0,ans = 0;
+        int min = prices[0];
+        int max = prices[len-1];
+        int temp = 0,ans = 0;
 
         for (int i = 1; i < len; i++) {
-            dp1[i] = Math.max(dp1[i-1],prices[i]-minval);
-            minval = Math.min(minval,prices[i]);
+            dp1[i] = Math.max(dp1[i-1],prices[i]-min);
+            min = Math.min(min,prices[i]);
         }
 
         for (int i = len-2; i >= 0; i--) {
-            dp2[i] = Math.max(dp2[i+1],maxval-prices[i]);
-            maxval = Math.max(maxval,prices[i]);
+            dp2[i] = Math.max(dp2[i+1],max-prices[i]);
+            max = Math.max(max,prices[i]);
         }
 
         for (int i = 0; i < len; i++) {
-            tmax = dp1[i]+dp2[i];
-            ans = Math.max(tmax,ans);
+            temp = dp1[i]+dp2[i];
+            ans = Math.max(temp,ans);
         }
         return ans;
     }

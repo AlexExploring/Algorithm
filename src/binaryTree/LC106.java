@@ -36,16 +36,14 @@ public class LC106 {
 
     public TreeNode recursion(int in_left, int in_right) {
         // 如果这里没有节点构造二叉树了，就结束
-        if (in_left > in_right) {
-            return null;
-        }
+        if (in_left > in_right) return null;
 
         // 选择 post_index 位置的元素作为当前子树根节点
-        int root_val = postorder[post_index];
+        int rootVal = postorder[post_index];
         // 根据 root_val 在inorder中所在位置分成左右两棵子树
-        int in_root = index_map.get(root_val);
+        int in_root = index_map.get(rootVal);
         // 把根节点建立出来
-        TreeNode root = new TreeNode(root_val);
+        TreeNode root = new TreeNode(rootVal);
 
         // 下标减一
         post_index--;

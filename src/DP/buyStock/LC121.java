@@ -6,7 +6,7 @@ package DP.buyStock;
 public class LC121 {
 
     /**
-     * 动态规划：注意只能买卖一次
+     * 动态规划：注意只能买卖一次,所以一次遍历即可
      */
     public static int maxProfit(int[] prices){
         int len = prices.length;
@@ -19,7 +19,7 @@ public class LC121 {
             if (price < minPrice)
                 minPrice = price;
             else if (price - minPrice > max_profit){
-                max_profit = price-minPrice;
+                max_profit = price - minPrice;
             }
         }
 

@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * 二叉树的最大深度
  *
- * LC110用到了本题
+ * 相关题目LC111：二叉树的最小深度; LC110平衡二叉树
  */
 public class LC104 {
 
@@ -19,7 +19,7 @@ public class LC104 {
     }
 
     /**
-     * 层序遍历
+     * 层序遍历,统计有多少层
      */
     public int maxDepth1(TreeNode root) {
         if (root == null) return 0;

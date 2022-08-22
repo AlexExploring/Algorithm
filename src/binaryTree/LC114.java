@@ -36,7 +36,7 @@ public class LC114 {
     }
 
     /**
-     * 前序遍历和展开同步进行
+     * 前序遍历和展开同步进行 （形式上参见递归的前序遍历）
      */
     public void flatten1(TreeNode root) {
         if (root == null) return;
@@ -50,19 +50,16 @@ public class LC114 {
             TreeNode curr = stack.pop();
 
             if (prev != null) {
-                prev.left = null;
                 prev.right = curr;
+                prev.left = null;
             }
 
             TreeNode left = curr.left, right = curr.right;
             //因为栈是先进后出，为了保证先序遍历的顺序，先把右节点入栈，再把左节点入栈
-            if (right != null) {
-                stack.push(right);
-            }
-            if (left != null) {
-                stack.push(left);
-            }
+            if (right != null) stack.push(right);
+            if (left != null) stack.push(left);
 
+            //移到链表尾部，为下一次连接做准备
             prev = curr;
         }
     }

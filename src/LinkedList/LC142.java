@@ -34,27 +34,27 @@ public class LC142 {
 
     /**
      * 方法二：快慢指针
+     *
+     * 无环则返回null，有环则返回
      */
     public ListNode detectCycle1(ListNode head) {
         if (head == null) return null;
         ListNode slow = head,fast = head;
 
-        while (fast != null) {
+        while (true) {
+            if (fast == null || fast.next == null) return null;
+            fast = fast.next.next;
             slow = slow.next;
-            if (fast.next != null) {
-                fast = fast.next.next;
-            }else return null;
-
+            //fast和slow相遇，则继续找到环的入口节点
             if (fast == slow) {
-                ListNode ptr = head;
-                while (ptr != slow) {
-                    ptr = ptr.next;
+                fast = head;
+                while (fast != slow) {
+                    fast = fast.next;
                     slow = slow.next;
                 }
-                return ptr;
+                return fast;
             }
         }
 
-        return null;
     }
 }

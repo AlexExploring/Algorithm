@@ -23,7 +23,10 @@ public class LC101 {
         //只有一个为空，则返回false
         if (p != null || q != null)  return false;
         //p,q都不为空，判断节点值是否相等，并递归判断
-        return (p.val == q.val) && isSymmetric(p.left,q.right) && isSymmetric(p.right,q.left);
+        //（）
+        return (p.val == q.val)
+                && isSymmetric(p.left,q.right)
+                && isSymmetric(p.right,q.left);
     }
 
     /**
@@ -36,7 +39,7 @@ public class LC101 {
     }
 
     public boolean check(TreeNode p, TreeNode q) {
-        LinkedList<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(p);
         queue.offer(q);
 
@@ -47,9 +50,9 @@ public class LC101 {
             if (p == null && q == null) continue;
             if ((p == null || q == null) || (p.val != q.val)) return false;
 
+            //对称的将节点放入队列中
             queue.offer(p.left);
             queue.offer(q.right);
-
             queue.offer(p.right);
             queue.offer(q.left);
         }

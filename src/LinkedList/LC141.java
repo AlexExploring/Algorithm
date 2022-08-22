@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 环形链表
+ * 环形链表 （相关题目LC142 环形链表II）
  *
  * 题目：给你一个链表的头节点 head ，判断链表中是否有环。如果链表中存在环 ，则返回 true 。 否则，返回 false 。
  *
@@ -32,20 +32,14 @@ public class LC141 {
      *  快慢指针
      */
     public boolean hasCycle1(ListNode head) {
-        //为head为null或只有一个节点
-        if (head == null || head.next == null) return false;
+        if (head == null) return false;
+        ListNode slow = head,fast = head;
 
-        ListNode slow = head,fast = head.next;
-
-        //如果存在环，那么在环中一定会相遇，即slow = fast
-        while (slow != fast) {
-            if (fast == null || fast.next == null) {
-                return false;
-            }
-            slow = slow.next;
+        while (true) {
+            if (fast == null || fast.next == null) return false;
             fast = fast.next.next;
+            slow = slow.next;
+            if(fast == slow) return true;
         }
-
-        return true;
     }
 }

@@ -4,7 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
- * 借助栈遍历二叉树模板
+ * 时间复杂度O(N),空间复杂度O(N)
  */
 public class StackTraverseTemplate {
 
@@ -55,9 +55,9 @@ public class StackTraverseTemplate {
 
         Deque<TreeNode> stack = new LinkedList<>();
         //prev 用于记录上一个访问的节点
-        TreeNode prev = null,curr = root;
+        TreeNode curr = root,prev = null;
 
-        while (curr != null || !stack.isEmpty()) {
+        while (!stack.isEmpty() || curr != null) {
             while (curr != null) {
                 stack.push(curr);
                 curr = curr.left;

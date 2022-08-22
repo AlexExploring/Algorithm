@@ -20,7 +20,7 @@ public class LC128 {
 
         Arrays.sort(nums);
         int cur = 1,ans = 1;
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 1; i < len; i++) {
             // 相同直接跳过
             if (nums[i] == nums[i-1]) {
                 continue;
@@ -37,25 +37,24 @@ public class LC128 {
     }
 
     /**
-     * 使用set存储所有的数字
+     * 使用set存储所有的数字,找到每一个可以作为序列的第一个数，并从这第一个数扩展
      */
     public int longestConsecutive1(int[] nums) {
-        Set<Integer> numSet = new HashSet<>();
+        Set<Integer> set = new HashSet<>();
         for (int num : nums) {
-            numSet.add(num);
+            set.add(num);
         }
 
         int ans = 0;
         //如果是遍历nums，在leetcode上提交显示的结果，速度很慢。（不知道为什么）
-        for (Integer num : numSet) {
+        for (Integer num : set) {
             //确保每一个连续序列都是从最小的数字开始的
-            if (!numSet.contains(num-1)) {
-                int curNum = num;
-                int curAns = 1;
-                while (numSet.contains(++curNum)) {
-                    curAns += 1;
+            if (!set.contains(num-1)) {
+                int cur = 1;
+                while (set.contains(++num)) {
+                    cur++;
                 }
-                ans = Math.max(ans,curAns);
+                ans = Math.max(ans,cur);
             }
         }
 

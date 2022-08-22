@@ -33,6 +33,7 @@ public class LC46 {
     public void backTrack(int [] book,int [] nums,int len){
         if (tans.size() == len){
             ans.add(new ArrayList<>(tans));
+            return;
         }
 
         // 在非叶子结点处，产生不同的分支，这一操作的语义是：在还未选择的数中依次选择一个

@@ -1,20 +1,16 @@
 package DP.string;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 /**
  *  单词拆分  动态规划
  *
- *  给定一个非空字符串 s 和一个包含非空单词的列表 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。
+ * 给你一个字符串 s 和一个字符串列表 wordDict 作为字典。请你判断是否可以利用字典中出现的单词拼接出 s 。(反过来就是：
+ * 给定一个非空字符串 s 和一个包含非空单词的列表 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。)
+ *
  */
 public class LC139 {
-
-    public static void main(String[] args) {
-        System.out.println("leetcode".substring(0, 4));
-        System.out.println(new LC139().wordBreak("leetcode", Arrays.asList("leet", "code")));
-    }
 
     /**
      * dp[i] 表示字符串 s 前 i 个字符组成的字符串 s[0..i-1]是否能被空格拆分成若干个字典中出现的单词。

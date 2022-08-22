@@ -58,15 +58,12 @@ public class LC39 {
         }
 
         for (int i = begin; i < candidates.length; i++) {
-            if (sum + candidates[i] <= target){
-                tans.add(candidates[i]);
-                backTrack1(i,sum+candidates[i],candidates,target);
-                tans.remove(tans.size()-1);
-            } else {
-                //由于candidates是有序的，如果 sum+当前的数 > target ，
-                // 说明当前层后序的所有选择都不符合要求，break
-                break;
-            }
+            //由于candidates是有序的，如果 sum+当前的数 > target ，
+            // 说明当前层后序的所有选择都不符合要求，break
+            if (sum + candidates[i] > target) break;
+            tans.add(candidates[i]);
+            backTrack1(i,sum+candidates[i],candidates,target);
+            tans.remove(tans.size()-1);
         }
     }
 }

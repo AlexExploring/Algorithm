@@ -48,7 +48,7 @@ public class LC42 {
      * 动态规划
      */
     public int trap1(int[] height) {
-        if (height.length<3) return 0;
+        if (height.length < 3) return 0;
         int sum = 0;
         int[] maxLeft = new int[height.length];
         int[] maxRight = new int[height.length];
@@ -100,23 +100,23 @@ public class LC42 {
      */
     public int trap3(int[] height) {
         int sum = 0;
-        int current = 0;
+        int cur = 0;
         Stack<Integer> stack = new Stack<>();
 
-        while (current < height.length) {
+        while (cur < height.length) {
             //如果栈不空并且当前指向的高度大于栈顶高度就一直循环
-            while (!stack.empty() && height[current] > height[stack.peek()]) {
+            while (!stack.empty() && height[cur] > height[stack.peek()]) {
                 int h = height[stack.peek()]; //取出要出栈的元素
                 stack.pop(); //出栈
                 if (stack.empty()) { // 栈空就出去
                     break;
                 }
-                int distance = current - stack.peek() - 1; //两堵墙之前的距离。
-                int min = Math.min(height[stack.peek()], height[current]);
+                int distance = cur - stack.peek() - 1; //两堵墙之前的距离。
+                int min = Math.min(height[stack.peek()], height[cur]);
                 sum = sum + distance * (min - h);
             }
-            stack.push(current); //当前指向的墙入栈
-            current++; //指针后移
+            stack.push(cur); //当前指向的墙入栈
+            cur++; //指针后移
         }
 
         return sum;
