@@ -14,6 +14,8 @@ public class LC114 {
      * 按照前序遍历的顺序存储二叉树每一个节点，最后再连接为链表
      */
     public void flatten(TreeNode root) {
+        if (root == null) return;
+
         List<TreeNode> list = new ArrayList<TreeNode>();
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
         TreeNode curr = root;
@@ -37,21 +39,24 @@ public class LC114 {
 
     /**
      * 前序遍历和展开同步进行 （形式上参见递归的前序遍历）
+     *
+     * 使用栈记录已经被prev连接部分节点的子节点
+     *
      */
     public void flatten1(TreeNode root) {
         if (root == null) return;
 
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
         stack.push(root);
-        //prev 上一个访问的节点
+        //prev 上一个访问的节点,用来连接链表
         TreeNode prev = null;
 
         while (!stack.isEmpty()) {
             TreeNode curr = stack.pop();
 
             if (prev != null) {
-                prev.right = curr;
                 prev.left = null;
+                prev.right = curr;
             }
 
             TreeNode left = curr.left, right = curr.right;
@@ -65,7 +70,7 @@ public class LC114 {
     }
 
     /**
-     * 寻找前驱节点
+     * 不使用栈来记录子节点信息;寻找前驱节点
      */
     public void flatten2(TreeNode root) {
         TreeNode curr = root;
