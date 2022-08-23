@@ -18,9 +18,7 @@ public class LC112 {
      */
     public boolean hasPathSum(TreeNode root, int targetSum) {
         //递归边界，当前节点为null，则不存则到当前节点的路径
-        if (root == null) {
-            return false;
-        }
+        if (root == null) return false;
         //当前节点为根节点，需要判度
         if (root.left == null && root.right == null) {
             return targetSum == root.val;

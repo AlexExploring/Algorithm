@@ -17,9 +17,7 @@ public class LC124 {
      * 的一条路径，使得该路径上的节点值之和最大。
      */
     public int maxGain(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
+        if (root == null) return 0;
 
         /**
          *据函数 maxGain 得到每个节点的最大贡献值之后，如何得到二叉树的最大路径和？对于

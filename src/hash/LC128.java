@@ -49,7 +49,7 @@ public class LC128 {
         //如果是遍历nums，在leetcode上提交显示的结果，速度很慢。（不知道为什么）
         for (Integer num : set) {
             //确保每一个连续序列都是从最小的数字开始的
-            if (!set.contains(num-1)) {
+            if (!set.contains(num - 1)) {
                 int cur = 1;
                 while (set.contains(++num)) {
                     cur++;
