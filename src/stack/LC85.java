@@ -52,7 +52,7 @@ public class LC85 {
     /**
      * 单调栈解法
      */
-    public int maximalRectangle2(char[][] matrix) {
+    public int maximalRectangle1(char[][] matrix) {
         int rows = matrix.length,cols = matrix[0].length;
         if (rows == 0) return 0;
 
@@ -80,6 +80,7 @@ public class LC85 {
             for (int i = 0; i < rows; i++) {
                 while (!stack.isEmpty() && left[stack.peek()][j] >= left[i][j]) {
                     down[stack.peek()] = i;
+                    System.out.println("j="+j+"  down["+stack.peek()+"]="+i);
                     stack.pop();
                 }
                 up[i] = stack.isEmpty() ? -1 : stack.peek();

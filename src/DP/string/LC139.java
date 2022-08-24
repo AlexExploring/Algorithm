@@ -16,14 +16,15 @@ public class LC139 {
      * dp[i] 表示字符串 s 前 i 个字符组成的字符串 s[0..i-1]是否能被空格拆分成若干个字典中出现的单词。
      */
     public boolean wordBreak(String s, List<String> wordDict) {
-        HashSet<String> wordDictSet = new HashSet<>(wordDict);
+        HashSet<String> set = new HashSet<>(wordDict);
         boolean[] dp = new boolean[s.length() + 1];
         //边界，空字符串
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j < i; j++) {
-                // j可以取到， i取不到
-                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                // 如果dp[j]为true,表示s[0..j-1]可以被拆分为若干个字典中出现的词
+                //则，在截取字符串的时候，s.substring(j,i);
+                if (dp[j] && set.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
                 }

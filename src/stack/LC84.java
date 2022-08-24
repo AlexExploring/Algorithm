@@ -4,12 +4,9 @@ import java.util.Arrays;
 import java.util.Stack;
 
 /**
- * @author zhxspacex
- * @date 2021/1/5 22:25
- */
-
-/**
  * 柱状图中的最大矩形
+ *
+ * 题解：https://leetcode.cn/problems/largest-rectangle-in-histogram/solution/zhu-zhuang-tu-zhong-zui-da-de-ju-xing-by-leetcode-/
  */
 public class LC84 {
 
@@ -53,22 +50,22 @@ public class LC84 {
             while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]){
                 stack.pop();
             }
-            left[i] = (stack.isEmpty() ? -1 : stack.peek());
+            left[i] = stack.isEmpty() ? -1 : stack.peek();
             stack.push(i);
         }
 
         stack.clear();
-        for (int i = len-1;i >= 0 ; i--) {
+        for (int i = len - 1;i >= 0 ; i--) {
             while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
                 stack.pop();
             }
-            right[i] = (stack.isEmpty() ? len : stack.peek());
+            right[i] = stack.isEmpty() ? len : stack.peek();
             stack.push(i);
         }
 
         int ans = 0;
         for (int i = 0; i < len; i++) {
-            ans = Math.max(ans,(right[i]-left[i]-1) * heights[i]);
+            ans = Math.max(ans,(right[i] - left[i] - 1) * heights[i]);
         }
 
         return ans;
@@ -94,7 +91,7 @@ public class LC84 {
                 right[stack.peek()] = i;
                 stack.pop();
             }
-            left[i] = (stack.isEmpty() ? -1 : stack.peek());
+            left[i] = stack.isEmpty() ? -1 : stack.peek();
             stack.push(i);
         }
 

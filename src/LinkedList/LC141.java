@@ -32,10 +32,12 @@ public class LC141 {
      *  快慢指针
      */
     public boolean hasCycle1(ListNode head) {
+        //0个节点
         if (head == null) return false;
         ListNode slow = head,fast = head;
 
         while (true) {
+            //无环
             if (fast == null || fast.next == null) return false;
             fast = fast.next.next;
             slow = slow.next;
