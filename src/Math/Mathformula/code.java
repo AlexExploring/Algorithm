@@ -1,4 +1,4 @@
-package a_basic_Operation;
+package Math.Mathformula;
 
 public class code {
     /**
@@ -19,7 +19,7 @@ public class code {
     }
 
     /**
-     *求最大公倍数
+     *求最大公倍数LC
      */
     public static int commonMultiples(int a,int b){
         int t = gcd(a,b);

@@ -1,9 +1,6 @@
 package bfsAndDfs;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * 所有可能的路径
@@ -12,11 +9,18 @@ import java.util.List;
  */
 public class LC797 {
 
+    public static void main(String[] args) {
+        int[][] map = new int[][]{{1,2,3},{3},{3},{4},{}};
+        for (int[] ints : map) {
+            
+        }
+    }
+
     List<List<Integer>> ans = new ArrayList<List<Integer>>();
-    Deque<Integer> queue = new ArrayDeque<Integer>();
+    LinkedList<Integer> list = new LinkedList<>();
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        queue.offerLast(0);
+        list.addLast(0);
         dfs(graph, 0, graph.length - 1);
         return ans;
     }
@@ -24,14 +28,15 @@ public class LC797 {
     public void dfs(int[][] graph, int x, int dest) {
         //x == dest 说明找到了一条路径
         if (x == dest) {
-            ans.add(new ArrayList<>(queue));
+            ans.add(new ArrayList<>(list));
             return;
         }
 
         for (int y : graph[x]) {
-            queue.offerLast(y);
+            list.addLast(y);
+            System.out.println(y);
             dfs(graph,y,dest);
-            queue.pollLast();
+            list.removeLast();
         }
     }
 }

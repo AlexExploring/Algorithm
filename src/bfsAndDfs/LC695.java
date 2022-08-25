@@ -54,12 +54,13 @@ public class LC695 {
         int ans = 1;
 
         while (!queue.isEmpty()) {
-            int [] cell = queue.poll();
-            x = cell[0];y = cell[1];
+            int [] curr = queue.poll();
+            x = curr[0];y = curr[1];
             for (int[] dir : directions) {
                 int tx = dir[0] + x;
                 int ty = dir[1] + y;
-                if (tx < 0|| tx >= row || ty < 0 || ty >= col || grid[tx][ty] == 0 || vis[tx][ty] == true) {
+                if (tx < 0|| tx >= row || ty < 0 || ty >= col
+                        || grid[tx][ty] == 0 || vis[tx][ty]) {
                     continue;
                 }
                 queue.offer(new int[]{tx,ty});
@@ -97,6 +98,8 @@ public class LC695 {
         }
 
         vis[i][j] = true;
+        //注意：这里的num计算，也可以使用一个成员变量，每次进入此位置
+        //时，说明到了一块新地方，直接++即可，后面不用计算，也不需要返回值
         int num = 1;
 
         //向四个可能的方向移动
