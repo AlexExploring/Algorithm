@@ -18,8 +18,7 @@ public class Quick {
     /**
      * 写法一：选取中间节点为基准值
      */
-    public void quickSort(int [] array, int left, int right)
-    {
+    public void quickSort(int [] array, int left, int right) {
         if (left >= right) return;
 
         //因为使用的是do while 循环，所以l=left-1,r = right+1, 选用数组区间的中间数key为基准数

@@ -20,7 +20,7 @@ import java.util.Arrays;
  * 复杂度分析：时间复杂度：O(N^2)，这里 N 是数组的长度；
  * 空间复杂度：O(1)，使用到常数个临时变量。
  */
-public class Selection {
+public class Select {
     public static void main(String[] args) {
         int [] a = {5,6,4345,3,6,32412,4234,235,562423};
         SelectionSort(a);

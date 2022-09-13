@@ -33,25 +33,4 @@ public class Bubble {
             }
         }
     }
-
-    /**
-     * 冒泡排序，小改进
-     */
-    public void bubbleSort1(int [] array){
-        int len = array.length;
-        //只需要确定len-1个数的位置，剩下一个数的位置自然就被确定了
-        for (int i = 0; i < len - 1; i++) {
-            int flag = 0;
-            for (int j = 0; j < len - 1 - i; j++) {
-                if (array[j] > array[j+1]){
-                    flag = 1;
-                    int temp = array[j+1];
-                    array[j+1] = array[j];
-                    array[j] = temp;
-                }
-            }
-            //flag == 0说明在某一趟排序中，1次交换都没有进行，说明数组已经有序了
-            if (flag == 0) break;
-        }
-    }
 }

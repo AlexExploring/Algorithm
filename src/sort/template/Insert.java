@@ -8,19 +8,20 @@ import java.util.Arrays;
  * 思路：每次将一个数字插入一个有序的数组里，成为一个长度更长的有序数组，
  * 有限次操作以后，数组整体有序。
  */
-public class Insertion {
+public class Insert {
+
     public static void main(String[] args) {
-        int [] a = {562423,5,6,4345,3,6,32412,4234,235};
-        InsertionSort(a);
-        System.out.println(Arrays.toString(a));
+        int [] arr = new int[]{2,6,7,8,3};
+        new Insert().InsertionSort(arr);
+
     }
 
-    public static void InsertionSort(int [] array){
+    public void InsertionSort(int [] array){
         int len = array.length;
         for (int i = 0; i < len - 1; i++) {
             int curr = array[i + 1];
             int preIndex = i;
-            while (preIndex >= 0 && curr < array[preIndex]) {
+            while (preIndex >= 0 && array[preIndex] > curr) {
                 //后移
                 array[preIndex + 1] = array[preIndex];
                 preIndex--;

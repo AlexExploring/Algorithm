@@ -8,6 +8,28 @@ import java.util.List;
  */
 public class LC143 {
 
+    public static void main(String[] args) {
+        //测试数据
+        int[] data = new int[]{1,2,3,4,5};
+        ListNode head = null,tail = null;
+        for (int num : data) {
+            if (head != null) {
+                tail.next = new ListNode(num);
+                tail = tail.next;
+            }else {
+                head = new ListNode(num);
+                tail = head;
+            }
+        }
+
+        new LC143().reorderList(head);
+        ListNode p = head;
+        while (p != null) {
+            System.out.print(p.val+" ");
+            p = p.next;
+        }
+    }
+
     /**
      * 利用线性表list存储链表的节点，就可以通过下标随机访问
      */

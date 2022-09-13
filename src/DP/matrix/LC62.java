@@ -15,6 +15,10 @@ import java.util.Map;
 
 public class LC62 {
 
+    public static void main(String[] args) {
+        System.out.println(new LC62().uniquePaths(6, 6));
+    }
+
     /**
      *动态规划
      */

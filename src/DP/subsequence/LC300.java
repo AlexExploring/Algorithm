@@ -1,5 +1,7 @@
 package DP.subsequence;
 
+import java.util.Arrays;
+
 /**
  * 最长递增子序列
  *
@@ -16,11 +18,10 @@ public class LC300 {
         if (len == 0) return 0;
 
         int[] dp = new int[len];
-        dp[0] = 1;
+        Arrays.fill(dp,1);
         int max = 1;
 
-        for (int i = 1; i < len; i++) {
-            dp[i] = 1;
+        for (int i = 0; i < len; i++) {
             for (int j = 0; j < i; j++) {
                 // 计算dp[i]时，需要O(n)的时间遍历dp[0,i-1]的所有状态。
                 if (nums[i] > nums[j]) {

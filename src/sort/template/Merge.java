@@ -41,23 +41,22 @@ public class Merge {
     public void merge(int[] arr, int left,int mid,int right) {
         //数据中转数组
         int[] temp = new int[right-left+1];
-        int i = left;
-        int j = mid +1;
-        int t = 0;//temp数组的当前索引
+        int i = left,j = mid + 1;
+        int temIdx = 0;//temp数组的当前索引
 
         //比较左右两部分的元素，哪个小，把那个元素填入temp中
         while (i <= mid && j <= right){
-            if(arr[i] <= arr[j]) temp[t++] = arr[i++];
-            else temp[t++] = arr[j++];
+            if(arr[i] <= arr[j]) temp[temIdx++] = arr[i++];
+            else temp[temIdx++] = arr[j++];
         }
 
         //以下两个while只有一个会执行
-        while (i<=mid) temp[t++] = arr[i++];
-        while (j<=right) temp[t++] = arr[j++];
+        while (i <= mid) temp[temIdx++] = arr[i++];
+        while (j <= right) temp[temIdx++] = arr[j++];
 
         //将temp数组拷贝到arr数组，并不是每次都拷贝所有
-        for (t = 0; t < temp.length; t++) {
-            arr[left + t] = temp[t];
+        for (temIdx = 0; temIdx < temp.length; temIdx++) {
+            arr[left + temIdx] = temp[temIdx];
         }
     }
 }
