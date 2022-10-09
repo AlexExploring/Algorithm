@@ -1,7 +1,4 @@
 package dictionaryTree;
-
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
 public class Exercise {
 
     class Trie {
