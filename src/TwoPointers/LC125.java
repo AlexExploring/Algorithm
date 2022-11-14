@@ -10,7 +10,7 @@ public class LC125 {
      */
     public boolean isPalindrome(String s) {
         s = s.trim();
-        if (s.equals("")) return false;
+        if (s.equals("")) return true;
 
         StringBuffer newS = new StringBuffer();
         for (int i = 0; i < s.length(); i++) {
@@ -42,6 +42,7 @@ public class LC125 {
             if (l < r && !isEquals(s.charAt(l),s.charAt(r))) return false;
             l++;r--;
         }
+
         return true;
     }
 
@@ -53,27 +54,11 @@ public class LC125 {
     }
 
     /**
-     * 检测字符c是否为数字或字母
-     */
-    public boolean check1(char c) {
-        return 'a' <= c && c <= 'z' || 'A' <= c && c <= 'Z' || '0' <= c && c <= '9';
-    }
-
-    /**
      * 忽略大小写比较两个字符
      */
     public boolean isEquals(char a, char b) {
         if (Character.isLetter(a)&&Character.isLetter(b)){
             return Character.toLowerCase(a)==Character.toLowerCase(b);
         }else return a==b;
-    }
-
-    /**
-     * 忽略大小写比较两个字符
-     */
-    public boolean isEquals1(char a, char b) {
-        if ('A' <= a && a <= 'Z') a = (char)(a + 32);
-        if ('A' <= b && b <= 'Z') b = (char)(b + 32);
-        return a == b;
     }
 }
