@@ -52,8 +52,9 @@ public class JZ57II {
      */
     public int[][] findContinuousSequence1(int target) {
         List<int[]> res = new ArrayList<>();
+        int l = 1,r = 2;
 
-        for (int l = 1,r = 2;l < r;) {
+        while (l < r) {
             int sum = (l + r) * (r - l + 1) / 2;
             if (sum == target) {
                 int[] tem = new int[r - l + 1];
@@ -86,13 +87,13 @@ public class JZ57II {
                     ans[k - l] = k;
                 }
                 res.add(ans);
-            }
-            if(sum >= target) {
-                //将l移除窗口
-                sum -= l;l++;
-            } else {
+                sum -= l++;
+            }else if(sum < target) {
                 //将r加入窗口
-                sum += r;r++;
+                sum += ++r;
+            } else {
+                //将l移除窗口
+                sum -= l++;
             }
         }
 
