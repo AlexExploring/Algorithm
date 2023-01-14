@@ -1,7 +1,8 @@
-package TwoPointers;
+package TwoPointers.palindrome;
 
 /**
- * 验证回文串
+ * 验证回文串I
+ * 相关题目：LC680
  */
 public class LC125 {
 
@@ -9,23 +10,23 @@ public class LC125 {
      * 方法一： 先对字符串进行处理
      */
     public boolean isPalindrome(String s) {
-        s = s.trim();
+        s.trim();
         if (s.equals("")) return true;
 
-        StringBuffer newS = new StringBuffer();
+        StringBuilder temp = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
-            if (Character.isDigit(s.charAt(i))||Character.isLetter(s.charAt(i))) {
-                if (Character.isLetter(s.charAt(i))){
-                    newS.append(Character.toLowerCase(s.charAt(i)));
-                }else newS.append(s.charAt(i));
+            char c = s.charAt(i);
+            if (Character.isLetterOrDigit(c)) {
+                if (Character.isLetter(c)) {
+                    c = Character.toLowerCase(s.charAt(i));
+                }
+                temp.append(c);
             }
         }
 
-        int left = 0,right = newS.length()-1;
-        while (left<=right) {
-            if (newS.charAt(left)==newS.charAt(right)){
-                left++;right--;
-            }else return false;
+        int l = 0,r = temp.length() - 1;
+        while (l < r) {
+            if (s.charAt(l++) != s.charAt(r--)) return false;
         }
 
         return true;
@@ -50,15 +51,15 @@ public class LC125 {
      * 检测字符c是否为数字或字母
      */
     public boolean check(char c) {
-        return Character.isDigit(c) || Character.isLetter(c);
+        return Character.isLetterOrDigit(c);
     }
 
     /**
      * 忽略大小写比较两个字符
      */
     public boolean isEquals(char a, char b) {
-        if (Character.isLetter(a)&&Character.isLetter(b)){
-            return Character.toLowerCase(a)==Character.toLowerCase(b);
-        }else return a==b;
+        if (Character.isLetter(a) && Character.isLetter(b)){
+            return Character.toLowerCase(a) == Character.toLowerCase(b);
+        }else return a == b;
     }
 }

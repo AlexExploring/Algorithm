@@ -21,6 +21,7 @@ public class LC15 {
      * 方法一：回溯   超时
      */
     public List<List<Integer>> threeSum(int[] nums) {
+        //让相同的数字集中在一起，方便剪枝
         Arrays.sort(nums);
         backTrack(nums, 0, 0);
         return ans;
@@ -52,7 +53,7 @@ public class LC15 {
         Arrays.sort(nums);
         int len = nums.length;
 
-        //外层for循环确定一个数，内层的while使用双指针来确定符合条件的两个数
+        //外层for循环确定一个数，内层的while使用双指针来确定符合条件的两个数,这样做避免产生重复的三元组
         for (int i = 0; i < len; i++) {
             //前面对数组已经排过序，要使三数之和为0，则第一个数不可能大于0
             if (nums[i] > 0) break;
@@ -69,8 +70,11 @@ public class LC15 {
                     while (l < r && nums[r] == nums[r - 1]) r--;
                     l++;
                     r--;
-                } else if (sum < 0) l++;
-                else r--;
+                } else if (sum < 0) {
+                    l++;
+                } else {
+                    r--;
+                }
             }
         }
 

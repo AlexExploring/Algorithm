@@ -1,6 +1,7 @@
 package TwoPointers;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * title：和为s的两个数字
@@ -18,13 +19,10 @@ public class JZ57I {
         int l = 0,r = nums.length - 1;
 
         while (l < r) {
-            int tem = nums[l] + nums[r];
-            if (tem > target) r--;
-            else if (tem < target) l++;
-            else {
-                //注意如果此时不跳出循环则会陷入死循环
-                return new int[]{nums[l],nums[r]};
-            }
+            int sum = nums[l] + nums[r];
+            if (sum > target) r--;
+            else if (sum < target) l++;
+            else return new int[]{nums[l],nums[r]};
         }
 
         return new int[0];
@@ -35,12 +33,13 @@ public class JZ57I {
      * 时间复杂度O(n),空间复杂度O(n)
      */
     public int[] twoSum1(int[] nums, int target) {
-        HashSet<Integer> set = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (set.contains(target - nums[i])){
-                return new int[]{target - nums[i],nums[i]};
+        Set<Integer> set = new HashSet<>();
+
+        for (int num : nums) {
+            if (set.contains(target - num)) {
+                return new int[]{target - num,num};
             }
-            set.add(nums[i]);
+            set.add(num);
         }
 
         return new int[0];

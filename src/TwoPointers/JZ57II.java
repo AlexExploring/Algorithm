@@ -6,16 +6,12 @@ import java.util.List;
 /**
  *  title：和为s的连续正数序列
  *
- *  题目：输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。
+ *  题目：输入一个正整数 target ，输出所有和为 target 的[连续正整数序列]（至少含有两个数）。
  *  序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。
  *
  *  数据范围：1 <= target <= 10^5
  */
 public class JZ57II {
-
-    public static void main(String[] args) {
-        new JZ57II().findContinuousSequence2(9);
-    }
 
     /**
      * 方法一：枚举+暴力（由于题目要求序列长度至少大于 2，,所以枚举的上界应该为(target/2)
@@ -23,7 +19,7 @@ public class JZ57II {
     public int[][] findContinuousSequence(int target) {
         List<int[]> res = new ArrayList<>();
         //r为枚举的上界
-        int sum = 0, r = (target / 2);
+        int sum = 0, r = (target/2);
 
         //由于是正整数，所以枚举的起点为1
         for (int i = 1; i <= r; i++) {
@@ -52,9 +48,11 @@ public class JZ57II {
      */
     public int[][] findContinuousSequence1(int target) {
         List<int[]> res = new ArrayList<>();
+        int l = 1, r = 2;
 
-        for (int l = 1,r = 2;l < r;) {
-            int sum = (l + r) * (r - l + 1) / 2;
+        while (l < r) {
+            //等差数列求和公式Sn = n(a1 + an)/2
+            int sum = (r - l + 1)*(r + l) / 2;
             if (sum == target) {
                 int[] tem = new int[r - l + 1];
                 for (int i = l; i <= r; i++) {
@@ -65,6 +63,7 @@ public class JZ57II {
             }else if (sum < target) {
                 r++;
             }else {
+                //
                 l++;
             }
         }
@@ -73,7 +72,7 @@ public class JZ57II {
     }
 
     /**
-     * 双指针,滑动窗口
+     * 双指针+滑动窗口
      */
     public int[][] findContinuousSequence2(int target) {
         List<int[]> res = new ArrayList<>();
@@ -89,10 +88,10 @@ public class JZ57II {
             }
             if(sum >= target) {
                 //将l移除窗口
-                sum -= l;l++;
+                sum -= l++;
             } else {
                 //将r加入窗口
-                sum += r;r++;
+                sum += ++r;
             }
         }
 

@@ -1,4 +1,4 @@
-package TwoPointers;
+package TwoPointers.array;
 
 /**
  * 删除有序数组中的重复项
@@ -16,6 +16,6 @@ public class LC26 {
             }
         }
 
-        return index+1;
+        return index + 1;
     }
 }
